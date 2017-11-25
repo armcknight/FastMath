@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                     FastMath is a framework for performing numerical computation in Swift.
                    DESC
 
-  s.homepage     = "http://github.com/tworingsoft/fastmath"
+  s.homepage     = "https://github.com/tworingsoft/fastmath"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://github.com/tworingsoft/fastmath.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/tworingsoft/fastmath.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
