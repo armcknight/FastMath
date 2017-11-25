@@ -22,7 +22,7 @@ extension Set where Element == Vertex {
 
     func counterClockwiseOrder() -> [Vertex] {
         let original = Set(self)
-        let nonghosts = self.filter { !ghosts.contains($0) }
+        let nonghosts = Set(self.filter { !ghosts.contains($0) })
         if nonghosts.count == 1, let nonghost = nonghosts.first {
             return [ ghost2, ghost1, nonghost ]
         }

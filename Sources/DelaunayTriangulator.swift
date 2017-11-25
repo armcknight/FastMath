@@ -64,7 +64,7 @@ private extension DelaunayTriangulator {
         otherEdges.forEach { otherTriangleEdge in
             containingNode.children.append(LocationGraphNode(triangle: Triangle(edge: otherTriangleEdge, point: point), parents: [ containingNode ]))
         }
-        let otherNeighborEdges = neighbor.triangle.edges().filter { $0 != edge }
+        let otherNeighborEdges = Set(neighbor.triangle.edges().filter { $0 != edge })
         otherNeighborEdges.forEach { otherNeighborEdge in
             neighbor.children.append(LocationGraphNode(triangle: Triangle(edge: otherNeighborEdge, point: point), parents: [ containingNode ]))
         }

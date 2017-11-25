@@ -11,7 +11,7 @@ import Foundation
 extension Set where Element == Vertex {
 
     func centerPoint() -> Vertex {
-        let nonghosts = self.filter { !ghosts.contains($0) }
+        let nonghosts = Set(self.filter { !ghosts.contains($0) })
         let sortedX = nonghosts.sortedByX()
         let sortedY = nonghosts.sortedByY()
         let centerX = (sortedX.last!.x - sortedX.first!.x) / 2.0
@@ -20,7 +20,7 @@ extension Set where Element == Vertex {
     }
 
     func convexHull() -> [Vertex]? {
-        let nonghosts = self.filter { !ghosts.contains($0) }
+        let nonghosts = Set(self.filter { !ghosts.contains($0) })
         if nonghosts.count < 3 { return nil }
 
         let sortedPoints = nonghosts.sortedByX()
