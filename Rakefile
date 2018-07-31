@@ -68,5 +68,5 @@ task :release do
   sh "git tag #{version.strip}"
   sh 'git push --tags'
   
-  sh "pod trunk push #{version_file}"
+  sh "pod trunk push #{version_file} --allow-warnings"
 end
