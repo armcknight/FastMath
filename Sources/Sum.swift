@@ -17,15 +17,6 @@ extension Sequence where Iterator.Element == Float {
 
 }
 
-extension Sequence where Iterator.Element == Float80 {
-
-    // sum all elements in the collection
-    func sum() -> Float80 {
-        return self.reduce(0, +)
-    }
-
-}
-
 extension Sequence where Iterator.Element == Double {
 
     // sum all elements in the collection

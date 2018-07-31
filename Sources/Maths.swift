@@ -96,9 +96,9 @@ func permuteLexicographically(_ items:[AnyObject], distance: Int) {
     var items = items
     if distance > 1 {
         let i = distance.factorialRoot()
-        swap(&items[items.count - 1 - (i - 1)], &items[items.count - 1 - i])
+        items.swapAt(items.count - 1 - (i - 1), items.count - 1 - i)
         permuteLexicographically(items, distance: distance - factorial(i))
     } else if distance == 1 {
-        swap(&items[items.count - 1], &items[items.count - 2])
+        items.swapAt(items.count - 1, items.count - 2)
     }
 }

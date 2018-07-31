@@ -12,11 +12,11 @@ infix operator **
 
 // Integer case
 
-func **<T>(base: T, power: T) -> T where T: Integer, T: IntegerArithmetic {
+func **<T>(base: T, power: T) -> T where T: BinaryInteger {
     return exponentiate(base, power)
 }
 
-func exponentiate<T>(_ base: T, _ power: T) -> T where T: Integer, T: IntegerArithmetic {
+func exponentiate<T>(_ base: T, _ power: T) -> T where T: BinaryInteger {
     var result = base
     var mutablePower = power
     while mutablePower > 1 {
@@ -36,9 +36,4 @@ func **(base: Float, power: Float) -> Float {
 /// applies to `Double` and `Float64`
 func **(base: Double, power: Double) -> Double {
     return pow(base, power)
-}
-
-func **(base: Float80, power: Float80) -> Float80 {
-    // TODO: implement
-    return -1.0
 }

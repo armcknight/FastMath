@@ -39,10 +39,10 @@ public extension Set where Element: Comparable {
         var combos = Set<Set<T>>()
 
         let indices = Array(0..<self.count)
-        var selectedIndices = indices[0..<combinationSize]
+        let selectedIndices = indices[0..<combinationSize]
         for i in stride(from: combinationSize - 1, through: 0, by: -1) {
-            var a = i
-            while a < self.count - combinationSize + i {
+            let a = i
+            while a < self.count - combinationSize - i {
                 var set: Set<T> = Set() as! Set<T>
                 for index in selectedIndices {
                     set.insert(index as! T)

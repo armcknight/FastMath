@@ -56,7 +56,7 @@ extension Int {
 
     init?(romanNumeral:String) {
 
-        let characters = Array(romanNumeral.uppercased().characters)
+        let characters = Array(romanNumeral.uppercased())
 
         self = 0
 
