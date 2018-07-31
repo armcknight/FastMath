@@ -1,0 +1,18 @@
+PODS:
+  - FastMath (1.0.0)
+  - FastMath/Tests (1.0.0)
+
+DEPENDENCIES:
+  - FastMath (from `.`)
+  - FastMath/Tests (from `.`)
+
+EXTERNAL SOURCES:
+  FastMath:
+    :path: "."
+
+SPEC CHECKSUMS:
+  FastMath: edbd98365b8f91c0a8ec00dcc6cd6c3f9b97e42c
+
+PODFILE CHECKSUM: 64e764c91bdef09f2edbb8639d1b38e3d5b11610
+
+COCOAPODS: 1.5.3
