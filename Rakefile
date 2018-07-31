@@ -26,7 +26,7 @@ task :test do
     Open3.pipeline(
        ["xcrun xcodebuild -workspace FastMath.xcworkspace -scheme #{scheme} -destination 'platform=iOS Simulator,name=iPhone SE,OS=11.4' test"],
        ["tee #{scheme}.log"],
-       ['rbenv exec xcpretty -t']
+       ['#{ruby_environment_prefixes} xcpretty -t']
    )
 end
 
