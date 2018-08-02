@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Sequence where Iterator.Element == Float {
+public extension Sequence where Iterator.Element == Float {
 
     // sum all elements in the collection
     func sum() -> Float {
@@ -17,7 +17,7 @@ extension Sequence where Iterator.Element == Float {
 
 }
 
-extension Sequence where Iterator.Element == Double {
+public extension Sequence where Iterator.Element == Double {
 
     // sum all elements in the collection
     func sum() -> Double {
@@ -26,7 +26,7 @@ extension Sequence where Iterator.Element == Double {
     
 }
 
-extension Sequence where Iterator.Element == Int {
+public extension Sequence where Iterator.Element == Int {
 
     // sum all elements in the collection
     func sum() -> Int {

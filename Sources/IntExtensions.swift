@@ -33,6 +33,27 @@ public extension Int {
     func isPrime() -> Bool {
         return self.divisors().count == 2
     }
+    
+    /// - Returns: all primes lesser than caller's numeric value
+    func primesUnder() -> Set<Int> {
+        var allNumbers = Array<Bool>(repeating: true, count: self)
+        for prime in 2..<self {
+            if allNumbers[prime] {
+                var composite = prime * prime
+                while composite < self {
+                    allNumbers[composite] = false
+                    composite += prime
+                }
+            }
+        }
+        var primes = Set<Int>()
+        for prime in 2..<self {
+            if allNumbers[prime] {
+                primes.insert(prime)
+            }
+        }
+        return primes
+    }
 
     func totient() -> Int {
         let factors = self.primeFactors()
