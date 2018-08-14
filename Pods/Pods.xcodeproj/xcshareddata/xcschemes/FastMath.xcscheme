@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83307C68CB788EB6752F965085BA33FA"
+               BlueprintIdentifier = "E18AF1AF07EA9DE7370DBE6B0403DAFB"
                BlueprintName = "FastMath"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "FastMath.framework">

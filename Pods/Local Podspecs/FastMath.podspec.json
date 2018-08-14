@@ -8,17 +8,15 @@
   "authors": {
     "Andrew McKnight": "andrew@tworingsoft.com"
   },
+  "platforms": {
+    "ios": "9.0"
+  },
   "source": {
     "git": "https://github.com/tworingsoft/fastmath.git",
     "tag": "1.0.0"
   },
   "source_files": "Sources/**/*.{c,h,swift}",
-  "platforms": {
-    "osx": null,
-    "ios": null,
-    "tvos": null,
-    "watchos": null
-  },
+  "swift_version": "4",
   "testspecs": [
     {
       "name": "Tests",

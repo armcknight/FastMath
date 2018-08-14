@@ -148,4 +148,8 @@ class FastMathTests: XCTestCase {
         return (input, expected)
     }
     
+    func testTriangularNumbers() {
+        XCTAssertEqual(7.triangularNumber(), 28)
+    }
+    
 }
