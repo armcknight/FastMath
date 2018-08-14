@@ -8,6 +8,8 @@
 import Foundation
 
 public struct DelaunayTriangulator {
+    
+    public init() {}
 
     public func triangulate(points: Set<Vertex>) -> LocationGraphNode? {
         if points.count == 0 {
