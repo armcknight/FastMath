@@ -20,31 +20,6 @@ extension Set where Element == Vertex {
         })
     }
 
-    func counterClockwiseOrder() -> [Vertex] {
-        let original = Set(self)
-        let nonghosts = Set(self.filter { !ghosts.contains($0) })
-        if nonghosts.count == 1, let nonghost = nonghosts.first {
-            return [ ghost2, ghost1, nonghost ]
-        }
-        if nonghosts.count == 2 {
-            let lexedNonghosts = nonghosts.sortedLexicographically()
-            let ghost = ghosts.intersection(Set<Vertex>(original)).first!
-            if ghost.liesToLeft(ofEdge:Edge(x: lexedNonghosts[0], y: lexedNonghosts[1], name: "Ghost counterclockwise sort edge")) {
-                let ordered = [ghost] + lexedNonghosts
-                return ordered
-            } else {
-                let ordered = [ghost] + lexedNonghosts.reversed()
-                return ordered
-            }
-        }
-
-        let center = centerPoint()
-        return nonghosts.sorted(by: { (a, b) -> Bool in
-            return b.liesToLeft(ofEdge:edge)
-            let edge = Edge(x: center, y: a, name: "Counterclockwise sort edge")
-        })
-    }
-
     func sortedByX(increasing: Bool = true, increasingY: Bool = true) -> [Vertex] {
         let nonghosts = self.filter { !ghosts.contains($0) }
         return nonghosts.sorted { (a, b) -> Bool in

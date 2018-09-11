@@ -21,46 +21,6 @@ class FastMathTests: XCTestCase {
 
         XCTAssertEqual(computed, expected)
     }
-    
-    func testCounterclockwiseSortElementCountAssertion() {
-        let x = Vertex(x: 0, y: 0, name: "x")
-        let y = Vertex(x: 10, y: 0, name: "y")
-        let _ = Set<Vertex>([x, y]).counterClockwiseOrder()
-        XCTFail("Should have failed")
-    }
-
-    func testCounterclockwiseOrdering() {
-        let a = Vertex(x: 3, y: 1, name: "a")
-        let b = Vertex(x: 4, y: 1, name: "b")
-        let c = Vertex(x: 5, y: 2, name: "c")
-        let d = Vertex(x: 5, y: 3, name: "d")
-        let e = Vertex(x: 4, y: 4, name: "e")
-        let f = Vertex(x: 3, y: 4, name: "f")
-        let g = Vertex(x: 2, y: 3, name: "g")
-        let h = Vertex(x: 2, y: 2, name: "h")
-        let points: Set<Vertex> = [a, b, c, d, e, f, g, h]
-
-        let expected = [a, b, c, d, e, f, g, h]
-        let computed = points.counterClockwiseOrder()
-        XCTAssert(expected.elementsEqual(computed))
-    }
-    
-    func testCounterclockwiseOrderingWithGhostPoints() {
-        let a = Vertex(x: 3, y: 1, name: "a")
-        let b = Vertex(x: 4, y: 1, name: "b")
-        let c = Vertex(x: 5, y: 2, name: "c")
-        let d = Vertex(x: 5, y: 3, name: "d")
-        let e = Vertex(x: 4, y: 4, name: "e")
-        let f = Vertex(x: 3, y: 4, name: "f")
-        let g = Vertex(x: 2, y: 3, name: "g")
-        let h = Vertex(x: 2, y: 2, name: "h")
-        let pointsWithGhosts: Set<Vertex> = [a, b, c, d, e, f, g, h, ghost2, ghost1]
-
-        let expected = [a, b, c, d, e, f, g, h, ghost2, ghost1]
-        let computed = pointsWithGhosts.counterClockwiseOrder()
-
-        print("done")
-    }
 
     func testConvexHull() {
         let points: Set<Vertex> = [
