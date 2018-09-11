@@ -16,7 +16,7 @@ extension Set where Element == Vertex {
         let sortedY = nonghosts.sortedByY()
         let centerX = (sortedX.last!.x - sortedX.first!.x) / 2.0
         let centerY = (sortedY.last!.y - sortedY.first!.y) / 2.0
-        return Vertex(x: centerX, y: centerY)
+        return Vertex(x: centerX, y: centerY, name: "CenterPoint(\(String(describing: self))")
     }
 
     func convexHull() -> [Vertex]? {
@@ -35,7 +35,7 @@ extension Set where Element == Vertex {
         var hullPoints = [Vertex]()
         hullPoints.append(sortedPoints[minmin])
         for i in (minmax + 1) ..< maxmin {
-            let edge = Edge(x: sortedPoints[minmin], y: sortedPoints[maxmin])
+            let edge = Edge(x: sortedPoints[minmin], y: sortedPoints[maxmin], name: "Lower Edge \(i)")
             let vertex = sortedPoints[i]
             if vertex.liesToLeft(ofEdge:edge) || vertex.isIncident(onEdge: edge) {
                 continue
@@ -44,7 +44,7 @@ extension Set where Element == Vertex {
             while hullPoints.count > 1 {
                 let a = hullPoints[hullPoints.count - 1]
                 let b = hullPoints[hullPoints.count - 2]
-                if vertex.liesToLeft(ofEdge:Edge(x: b, y: a)) {
+                if vertex.liesToLeft(ofEdge:Edge(x: b, y: a, name: "Rectifying Lower Edge \(i)")) {
                     break
                 }
                 hullPoints.removeLast()
@@ -61,7 +61,7 @@ extension Set where Element == Vertex {
         }
 
         for i in ((minmax + 1) ... maxmin).reversed() {
-            let edge = Edge(x: sortedPoints[maxmax], y: sortedPoints[minmax])
+            let edge = Edge(x: sortedPoints[maxmax], y: sortedPoints[minmax], name: "Upper Edge \(i)")
             let vertex = sortedPoints[i]
             if vertex.liesToLeft(ofEdge:edge) || vertex.isIncident(onEdge: edge) {
                 continue
@@ -70,7 +70,7 @@ extension Set where Element == Vertex {
             while hullPoints.count - lowerHullCount > 1 {
                 let a = hullPoints[hullPoints.count - 1]
                 let b = hullPoints[hullPoints.count - 2]
-                if vertex.liesToLeft(ofEdge:Edge(x: b, y: a)) {
+                if vertex.liesToLeft(ofEdge:Edge(x: b, y: a, name: "Rectifying Upper Edge \(i)")) {
                     break
                 }
                 hullPoints.removeLast()

@@ -8,6 +8,22 @@
 
 import Foundation
 
+public extension Array {
+    func shuffled(minShuffles: Int = 50, maxShuffles: Int = 250) -> Array {
+        var result = Array(self)
+        let shuffles = (Int(arc4random()) % (maxShuffles + 1)) + minShuffles
+        for _ in 0 ..< shuffles {
+            let a = Int(arc4random()) % count
+            var b: Int
+            repeat {
+                b = Int(arc4random()) % count
+            } while b == a
+            result.swapAt(a, b)
+        }
+        return result
+    }
+}
+
 public extension Set where Element: Comparable {
 
     func combinationsRecursive<T>(combinationSize: Int) -> Set<Set<T>> where T: Comparable, T: Hashable {

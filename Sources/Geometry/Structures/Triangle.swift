@@ -11,114 +11,121 @@ import Foundation
 public struct Triangle {
 
     //a, b, c are directed edges in counterclockwise order
-    public var a, b, c: Edge!
+    public var a, b, c: Edge
+    
+    public let name: String
 
-    init(x: Vertex, y: Vertex, z: Vertex) {
+    init(x: Vertex, y: Vertex, z: Vertex, name: String) {
+        self.name = name
+        
         let points: Set<Vertex> = [x, y, z]
         let intersection = ghosts.intersection(Set<Vertex>(points)).count
-
-        log(String(format: "Creating Triangle with points: %@", String(describing: points)))
         
-        if intersection == 0 {
-            let edge = Edge(x: y, y: z)
-            if x.liesToLeft(ofEdge:edge) {
-                self.a = edge
-                self.b = Edge(x: z, y: x)
-                self.c = Edge(x: x, y: y)
-            } else {
-                self.a = Edge(x: y, y: x)
-                self.b = Edge(x: x, y: z)
-                self.c = Edge(x: z, y: y)
+        guard intersection == 0 else {
+            switch intersection {
+            case 1:
+                if x == ghost1 {
+                    let sorted = Set([y, z]).sortedLexicographically()
+                    log(String(format: "x is ghost1, other points lex sorted: %@", String(describing: sorted)))
+                    self.a = Edge(x: x, y: sorted.last!, name: "A")
+                    self.b = Edge(x: sorted.last!, y: sorted.first!, name: "B")
+                    self.c = Edge(x: sorted.first!, y: x, name: "C")
+                }
+                else if x == ghost2 {
+                    let sorted = Set([y, z]).sortedLexicographically()
+                    log(String(format: "x is ghost2, other points lex sorted: %@", String(describing: sorted)))
+                    self.a = Edge(x: x, y: sorted.first!, name: "A")
+                    self.b = Edge(x: sorted.first!, y: sorted.last!, name: "B")
+                    self.c = Edge(x: sorted.last!, y: x, name: "C")
+                }
+                else if y == ghost1 {
+                    let sorted = Set([x, z]).sortedLexicographically()
+                    log(String(format: "y is ghost1, other points lex sorted: %@", String(describing: sorted)))
+                    self.a = Edge(x: y, y: sorted.last!, name: "A")
+                    self.b = Edge(x: sorted.last!, y: sorted.first!, name: "B")
+                    self.c = Edge(x: sorted.first!, y: y, name: "C")
+                }
+                else if y == ghost2 {
+                    let sorted = Set([x, z]).sortedLexicographically()
+                    log(String(format: "y is ghost2, other points lex sorted: %@", String(describing: sorted)))
+                    self.a = Edge(x: y, y: sorted.first!, name: "A")
+                    self.b = Edge(x: sorted.first!, y: sorted.last!, name: "B")
+                    self.c = Edge(x: sorted.last!, y: y, name: "C")
+                }
+                else if z == ghost1 {
+                    let sorted = Set([x, y]).sortedLexicographically()
+                    log(String(format: "z is ghost1, other points lex sorted: %@", String(describing: sorted)))
+                    self.a = Edge(x: z, y: sorted.last!, name: "A")
+                    self.b = Edge(x: sorted.last!, y: sorted.first!, name: "B")
+                    self.c = Edge(x: sorted.first!, y: z, name: "C")
+                }
+                else {
+                    precondition(z == ghost2)
+                    let sorted = Set([x, y]).sortedLexicographically()
+                    log(String(format: "z is ghost2, other points lex sorted: %@", String(describing: sorted)))
+                    self.a = Edge(x: z, y: sorted.first!, name: "A")
+                    self.b = Edge(x: sorted.first!, y: sorted.last!, name: "B")
+                    self.c = Edge(x: sorted.last!, y: z, name: "C")
+                }
+            case 2:
+                if x == ghost1 && y == ghost2 {
+                    log("x == ghost1 && y == ghost2")
+                    self.a = Edge(x: y, y: x, name: "A")
+                    self.b = Edge(x: x, y: z, name: "B")
+                    self.c = Edge(x: z, y: y, name: "C")
+                }
+                else if x == ghost2 && y == ghost1 {
+                    log("x == ghost2 && y == ghost1")
+                    self.a = Edge(x: x, y: y, name: "A")
+                    self.b = Edge(x: y, y: z, name: "B")
+                    self.c = Edge(x: z, y: x, name: "C")
+                }
+                else if x == ghost1 && z == ghost2 {
+                    log("x == ghost1 && z == ghost2")
+                    self.a = Edge(x: z, y: x, name: "A")
+                    self.b = Edge(x: x, y: y, name: "B")
+                    self.c = Edge(x: y, y: z, name: "C")
+                }
+                else if x == ghost2 && z == ghost1 {
+                    log("x == ghost2 && z == ghost1")
+                    self.a = Edge(x: x, y: z, name: "A")
+                    self.b = Edge(x: z, y: y, name: "B")
+                    self.c = Edge(x: y, y: x, name: "C")
+                }
+                else if y == ghost1 && z == ghost2 {
+                    log("y == ghost1 && z == ghost2")
+                    self.a = Edge(x: z, y: y, name: "A")
+                    self.b = Edge(x: y, y: x, name: "B")
+                    self.c = Edge(x: x, y: z, name: "C")
+                }
+                else {
+                    precondition(y == ghost2 && z == ghost1)
+                    log("y == ghost2 && z == ghost1")
+                    self.a = Edge(x: y, y: z, name: "A")
+                    self.b = Edge(x: z, y: x, name: "B")
+                    self.c = Edge(x: x, y: y, name: "C")
+                }
+            default: fatalError("Expected only one or two possible ghost points in the provided arguments, but got \(intersection)")
             }
+            return
         }
-        else if intersection == 1 {
-            if x == ghost1 {
-                let sorted = Set([y, z]).sortedLexicographically()
-                log(String(format: "x is ghost1, other points lex sorted: %@", String(describing: sorted)))
-                self.a = Edge(x: x, y: sorted.last!)
-                self.b = Edge(x: sorted.last!, y: sorted.first!)
-                self.c = Edge(x: sorted.first!, y: x)
-            }
-            else if x == ghost2 {
-                let sorted = Set([y, z]).sortedLexicographically()
-                log(String(format: "x is ghost2, other points lex sorted: %@", String(describing: sorted)))
-                self.a = Edge(x: x, y: sorted.first!)
-                self.b = Edge(x: sorted.first!, y: sorted.last!)
-                self.c = Edge(x: sorted.last!, y: x)
-            }
-            else if y == ghost1 {
-                let sorted = Set([x, z]).sortedLexicographically()
-                log(String(format: "y is ghost1, other points lex sorted: %@", String(describing: sorted)))
-                self.a = Edge(x: y, y: sorted.last!)
-                self.b = Edge(x: sorted.last!, y: sorted.first!)
-                self.c = Edge(x: sorted.first!, y: y)
-            }
-            else if y == ghost2 {
-                let sorted = Set([x, z]).sortedLexicographically()
-                log(String(format: "y is ghost2, other points lex sorted: %@", String(describing: sorted)))
-                self.a = Edge(x: y, y: sorted.first!)
-                self.b = Edge(x: sorted.first!, y: sorted.last!)
-                self.c = Edge(x: sorted.last!, y: y)
-            }
-            else if z == ghost1 {
-                let sorted = Set([x, y]).sortedLexicographically()
-                log(String(format: "z is ghost1, other points lex sorted: %@", String(describing: sorted)))
-                self.a = Edge(x: z, y: sorted.last!)
-                self.b = Edge(x: sorted.last!, y: sorted.first!)
-                self.c = Edge(x: sorted.first!, y: z)
-            }
-            else if z == ghost2 {
-                let sorted = Set([x, y]).sortedLexicographically()
-                log(String(format: "z is ghost2, other points lex sorted: %@", String(describing: sorted)))
-                self.a = Edge(x: z, y: sorted.first!)
-                self.b = Edge(x: sorted.first!, y: sorted.last!)
-                self.c = Edge(x: sorted.last!, y: z)
-            }
-        }
-        else if intersection == 2 {
-            if x == ghost1 && y == ghost2 {
-                log("x == ghost1 && y == ghost2")
-                self.a = Edge(x: y, y: x)
-                self.b = Edge(x: x, y: z)
-                self.c = Edge(x: z, y: y)
-            }
-            else if x == ghost2 && y == ghost1 {
-                log("x == ghost2 && y == ghost1")
-                self.a = Edge(x: x, y: y)
-                self.b = Edge(x: y, y: z)
-                self.c = Edge(x: z, y: x)
-            }
-            else if x == ghost1 && z == ghost2 {
-                log("x == ghost1 && z == ghost2")
-                self.a = Edge(x: z, y: x)
-                self.b = Edge(x: x, y: y)
-                self.c = Edge(x: y, y: z)
-            }
-            else if x == ghost2 && z == ghost1 {
-                log("x == ghost2 && z == ghost1")
-                self.a = Edge(x: x, y: z)
-                self.b = Edge(x: z, y: y)
-                self.c = Edge(x: y, y: x)
-            }
-            else if y == ghost1 && z == ghost2 {
-                log("y == ghost1 && z == ghost2")
-                self.a = Edge(x: z, y: y)
-                self.b = Edge(x: y, y: x)
-                self.c = Edge(x: x, y: z)
-            }
-            else if y == ghost2 && z == ghost1 {
-                log("y == ghost2 && z == ghost1")
-                self.a = Edge(x: y, y: z)
-                self.b = Edge(x: z, y: x)
-                self.c = Edge(x: x, y: y)
-            }
+        
+        let edge = Edge(x: y, y: z, name: "A")
+        if x.liesToLeft(ofEdge:edge) {
+            self.a = edge
+            self.b = Edge(x: z, y: x, name: "B")
+            self.c = Edge(x: x, y: y, name: "C")
+        } else {
+            self.a = Edge(x: y, y: x, name: "A")
+            self.b = Edge(x: x, y: z, name: "B")
+            self.c = Edge(x: z, y: y, name: "C")
         }
 
         log(String(format: "Created %@.", String(describing: self)))
     }
 
-    init(edge: Edge, point: Vertex) {
-        self.init(x: point, y: edge.a, z: edge.b)
+    init(edge: Edge, point: Vertex, name: String) {
+        self.init(x: point, y: edge.a, z: edge.b, name: name)
     }
 
 }
@@ -128,7 +135,7 @@ extension Triangle {
     func centroid() -> Vertex {
         let x = (a.a.x + a.b.x + b.b.x) / 3.0
         let y = (a.a.y + a.b.y + b.b.y) / 3.0
-        return Vertex(x: x, y: y)
+        return Vertex(x: x, y: y, name: "Centroid(\(String(describing: self)))")
     }
 
     func hasGhostPoint() -> Bool {
@@ -165,7 +172,7 @@ extension Triangle {
 extension Triangle: Hashable {
 
     public var hashValue: Int {
-        return String(describing: self).hashValue
+        return String(describing: self).replacingOccurrences(of: name, with: "").hashValue
     }
 
 }
@@ -173,8 +180,7 @@ extension Triangle: Hashable {
 extension Triangle: CustomStringConvertible {
 
     public var description: String {
-        let sortedPoints: [Vertex] = points().sortedLexicographically()
-        return String(format: "[%@]", (sortedPoints as NSArray).componentsJoined(by: " "))
+        return String(format: "Triangle “%@”: [%@ %@ %@]", name, String(describing: a.a), String(describing: a.b), String(describing: b.b))
     }
 
 }

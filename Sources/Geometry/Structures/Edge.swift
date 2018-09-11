@@ -11,14 +11,20 @@ import Foundation
 public struct Edge {
 
     public var a, b: Vertex
+    public let name: String
 
-    init(x: Vertex, y: Vertex) {
+    init(x: Vertex, y: Vertex, name: String) {
+        self.name = name
         self.a = x
         self.b = y
     }
 
     func containsGhostPoint() -> Bool {
-        return Set<Vertex>([a, b]).intersection(ghosts).count > 0
+        return endpoints().intersection(ghosts).count > 0
+    }
+    
+    func isGhostEdge() -> Bool {
+        return endpoints().symmetricDifference(ghosts).count == 0
     }
 
     func endpoints() -> Set<Vertex> {
@@ -30,7 +36,7 @@ public struct Edge {
 extension Edge: Hashable {
 
     public var hashValue: Int {
-        return String(describing: self).hashValue
+        return String(describing: self).replacingOccurrences(of: name, with: "").hashValue
     }
 
 }
@@ -38,7 +44,7 @@ extension Edge: Hashable {
 extension Edge: CustomStringConvertible {
 
     public var description: String {
-        return String(format: "[%@ %@]", String(describing: a), String(describing: b))
+        return String(format: "Edge “%@”: [%@ %@]", name, String(describing: a), String(describing: b))
     }
 
 }

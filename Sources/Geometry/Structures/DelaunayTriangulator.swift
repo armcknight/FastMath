@@ -25,7 +25,7 @@ public struct DelaunayTriangulator {
             return nil
         }
 
-        let superTriangle = Triangle(x: highestPoint, y: ghost1, z: ghost2)
+        let superTriangle = Triangle(x: highestPoint, y: ghost1, z: ghost2, name: "Root")
         let triangulation = LocationGraphNode(triangle: superTriangle, parents: [])
         for point in sortedPoints.dropFirst() {
             insertPoint(triangulation: triangulation, point: point)
@@ -63,12 +63,14 @@ private extension DelaunayTriangulator {
 
     func handleColinearPoint(triangulation: LocationGraphNode, containingNode: LocationGraphNode, neighbor: LocationGraphNode, point: Vertex, edge: Edge) {
         let otherEdges = containingNode.triangle.edges().filter { $0 != edge }
+        var i = 0
         otherEdges.forEach { otherTriangleEdge in
-            containingNode.children.append(LocationGraphNode(triangle: Triangle(edge: otherTriangleEdge, point: point), parents: [ containingNode ]))
+            containingNode.children.append(LocationGraphNode(triangle: Triangle(edge: otherTriangleEdge, point: point, name: "\(containingNode.triangle.name):Noncolinear triangle \(i)"), parents: [ containingNode ]))
+            i += 1
         }
         let otherNeighborEdges = Set(neighbor.triangle.edges().filter { $0 != edge })
         otherNeighborEdges.forEach { otherNeighborEdge in
-            neighbor.children.append(LocationGraphNode(triangle: Triangle(edge: otherNeighborEdge, point: point), parents: [ containingNode ]))
+            neighbor.children.append(LocationGraphNode(triangle: Triangle(edge: otherNeighborEdge, point: point, name: "\(containingNode.triangle.name):Noncolinear neighbor triangle \(i)"), parents: [ containingNode ]))
         }
         otherNeighborEdges.union(otherEdges).forEach {
             legalize(edge: $0, vertex: point, node: neighbor, triangulation: triangulation)
@@ -76,13 +78,13 @@ private extension DelaunayTriangulator {
     }
 
     func handleInteriorPoint(triangulation: LocationGraphNode, containingNode: LocationGraphNode, point: Vertex) {
-        let edgeA = containingNode.triangle.a!
-        let edgeB = containingNode.triangle.b!
-        let edgeC = containingNode.triangle.c!
-
-        let triangleA = Triangle(edge: edgeA, point: point)
-        let triangleB = Triangle(edge: edgeB, point: point)
-        let triangleC = Triangle(edge: edgeC, point: point)
+        let edgeA = containingNode.triangle.a
+        let edgeB = containingNode.triangle.b
+        let edgeC = containingNode.triangle.c
+        
+        let triangleA = Triangle(edge: edgeA, point: point, name: "\(containingNode.triangle.name):A")
+        let triangleB = Triangle(edge: edgeB, point: point, name: "\(containingNode.triangle.name):B")
+        let triangleC = Triangle(edge: edgeC, point: point, name: "\(containingNode.triangle.name):C")
 
         let nodeA = LocationGraphNode(triangle: triangleA, parents: [ containingNode ])
         let nodeB = LocationGraphNode(triangle: triangleB, parents: [ containingNode ])
@@ -154,12 +156,12 @@ private extension DelaunayTriangulator {
             return
         }
 
-        let legalEdge = Edge(x: otherPoint, y: vertex)
+        let legalEdge = Edge(x: otherPoint, y: vertex, name: "Flipped(\(edge.name))")
         log(String(format: "%@ Edge %@ is illegal because the neighboring triangle's opposing point %@ lies inside the circumcircle of the new triangle %@. New legal edge: %@.", depthMarker, String(describing: edge), String(describing: otherPoint), String(describing: node.triangle), String(describing: legalEdge)))
 
         // construct the new triangles replacing the old ones that met on the flipped edge
-        let A = Triangle(edge: legalEdge, point: edge.a)
-        let B = Triangle(edge: legalEdge, point: edge.b)
+        let A = Triangle(edge: legalEdge, point: edge.a, name: "\(legalEdge.name).A")
+        let B = Triangle(edge: legalEdge, point: edge.b, name: "\(legalEdge.name).B")
         let nodeA = LocationGraphNode(triangle: A, parents: [ node, neighbor ])
         let nodeB = LocationGraphNode(triangle: B, parents: [ node, neighbor ])
 
@@ -170,9 +172,9 @@ private extension DelaunayTriangulator {
         node.children.append(contentsOf: newNodes)
         neighbor.children.append(contentsOf: newNodes)
 
-        // RECURSION - propogate edge legalization
-        legalize(edge: Edge(x: edge.a, y: otherPoint), vertex: vertex, node: nodeA, triangulation: triangulation, callDepth: callDepth + 1)
-        legalize(edge: Edge(x: edge.b, y: otherPoint), vertex: vertex, node: nodeB, triangulation: triangulation, callDepth: callDepth + 1)
+        // MARK: RECURSION - propogate edge legalization
+        legalize(edge: Edge(x: edge.a, y: otherPoint, name: "RecursivelyLegalized_A"), vertex: vertex, node: nodeA, triangulation: triangulation, callDepth: callDepth + 1)
+        legalize(edge: Edge(x: edge.b, y: otherPoint, name: "RecursivelyLegalized_B"), vertex: vertex, node: nodeB, triangulation: triangulation, callDepth: callDepth + 1)
 
         log(String(format: "%@ Finished legalizing edge (%@) with vertex (%@).", depthMarker, String(describing: edge), String(describing: vertex)))
     }
@@ -212,7 +214,7 @@ private extension DelaunayTriangulator {
             return true
         }
 
-        let testEdge = Edge(x: otherPoint, y: vertex)
+        let testEdge = Edge(x: otherPoint, y: vertex, name: "Illegal ghost test edge")
         let otherLargerThanVertex = otherPoint.lexicographicallyLargerThan(otherPoint: vertex)
         let bLeftOfTestEdge = edge.b.liesToLeft(ofEdge:testEdge)
 

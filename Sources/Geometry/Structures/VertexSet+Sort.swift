@@ -29,7 +29,7 @@ extension Set where Element == Vertex {
         if nonghosts.count == 2 {
             let lexedNonghosts = nonghosts.sortedLexicographically()
             let ghost = ghosts.intersection(Set<Vertex>(original)).first!
-            if ghost.liesToLeft(ofEdge:Edge(x: lexedNonghosts[0], y: lexedNonghosts[1])) {
+            if ghost.liesToLeft(ofEdge:Edge(x: lexedNonghosts[0], y: lexedNonghosts[1], name: "Ghost counterclockwise sort edge")) {
                 let ordered = [ghost] + lexedNonghosts
                 return ordered
             } else {
@@ -40,8 +40,8 @@ extension Set where Element == Vertex {
 
         let center = centerPoint()
         return nonghosts.sorted(by: { (a, b) -> Bool in
-            let edge = Edge(x: center, y: a)
             return b.liesToLeft(ofEdge:edge)
+            let edge = Edge(x: center, y: a, name: "Counterclockwise sort edge")
         })
     }
 

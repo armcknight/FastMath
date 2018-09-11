@@ -39,14 +39,17 @@ class DelaunayTriangulationTests: XCTestCase {
     ///      C
     ///
     func testNontriangulated4thPoint() {
-        let a = Vertex(point: CGPoint(x: 82, y: 193))
-        let b = Vertex(point: CGPoint(x: 244, y: 202))
-        let c = Vertex(point: CGPoint(x: 45, y: 352))
-        let d = Vertex(point: CGPoint(x: 153, y: 302))
+        FastMath.logBlock = { message in
+            print(message)
+        }
+        let a = Vertex(point: CGPoint(x: 82, y: 193), name: "a")
+        let b = Vertex(point: CGPoint(x: 244, y: 202), name: "b")
+        let c = Vertex(point: CGPoint(x: 45, y: 352), name: "c")
+        let d = Vertex(point: CGPoint(x: 153, y: 302), name: "d")
         let points = Set(arrayLiteral: a, b, c, d)
-        let parent = LocationGraphNode(triangle: Triangle(x: a, y: b, z: c))
-        let tri1 = LocationGraphNode(triangle: Triangle(x: a, y: c, z: d), parents: [parent])
-        let tri2 = LocationGraphNode(triangle: Triangle(x: a, y: b, z: d), parents: [parent])
+        let parent = LocationGraphNode(triangle: Triangle(x: a, y: b, z: c, name: "root"))
+        let tri1 = LocationGraphNode(triangle: Triangle(x: a, y: c, z: d, name: "Expected child triangle 1"), parents: [parent])
+        let tri2 = LocationGraphNode(triangle: Triangle(x: a, y: b, z: d, name: "Expected child triangle 2"), parents: [parent])
         parent.children = [tri1, tri2]
         let expected = parent.getTriangles()!
         
