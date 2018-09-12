@@ -62,70 +62,19 @@ class FastMathTests: XCTestCase {
             XCTAssertEqual(computed, expected)
         }
     }
-
-    func testTriangulation() {
-        let (points, expected) = caseD()
-        let triangulator = DelaunayTriangulator()
-        let triangulation = triangulator.triangulate(points: points)
-        guard let triangles = triangulation?.getTriangles() else {
-            XCTFail("No triangles returned from triangulation.")
-            return
-        }
-
-        XCTAssertEqual(expected, Set(triangles))
-    }
     
-    func caseA() -> [Vertex] {
-        return [
-            Vertex(x: 0, y: 0, name: "a"),
-            Vertex(x: 100, y: 0, name: "b"),
-            Vertex(x: 50, y: 50, name: "c"),
-            Vertex(x: 50, y: 75, name: "d"),
-        ]
-    }
-
-    func caseB() -> [Vertex] {
-        return [
-            Vertex(x: 71.0, y: 516.33332824707, name: "a"),
-            Vertex(x: 314.0, y: 448.0, name: "b"),
-            Vertex(x: 97.6666564941406, y: 214.666656494141, name: "c"),
-            Vertex(x: 304.33332824707, y: 164.0, name: "d"),
-            Vertex(x: 31.6666564941406, y: 73.6666564941406, name: "e"),
-        ]
-    }
-
-    func caseC() -> [Vertex] {
-        return [
-            Vertex(x: 309.33332824707, y: 522.33332824707, name: "a"),
-            Vertex(x: 121.0, y: 515.666656494141, name: "b"),
-            Vertex(x: 127.0, y: 320.0, name: "c"),
-            Vertex(x: 295.0, y: 281.33332824707, name: "d"),
-            Vertex(x: 43.6666564941406, y: 245.666656494141, name: "e"),
-        ]
-    }
-
-    func caseD() -> (input: Set<Vertex>, expected: Set<Triangle>) {
-        let input = Set([
-            Vertex(x: 87.7, y: 166.3, name: "a"),
-            Vertex(x: 205.3, y: 167.0, name: "b"),
-            Vertex(x: 73.0, y: 264.3, name: "c"),
-            Vertex(x: 115.3, y: 310.0, name: "d"),
-            Vertex(x: 211.7, y: 307.0, name: "e"),
-            Vertex(x: 227.3, y: 232.3, name: "f"),
-            Vertex(x: 320.3, y: 123.3, name: "g"),
-        ])
-
-        let expected = Set([
-            Triangle(x: Vertex(x:211.7, y:307.0, name: "A:a"), y: Vertex(x:227.3, y:232.3, name: "A:b"), z: Vertex(x:320.3, y:123.3, name: "A:c"), name: "A"),
-            Triangle(x: Vertex(x:227.3, y:232.3, name: "B:a"), y: Vertex(x:205.3, y:167.0, name: "B:"), z: Vertex(x:320.3, y:123.3, name: "B:c"), name: "B"),
-            Triangle(x: Vertex(x:205.3, y:167.0, name: "C:a"), y: Vertex(x:87.7, y:166.3, name: "C:b"), z: Vertex(x:320.3, y:123.3, name: "C:c"), name: "C"),
-            Triangle(x: Vertex(x:227.3, y:232.3, name: "D:a"), y: Vertex(x:87.7, y:166.3, name: "D:b"), z: Vertex(x:205.3, y:167.0, name: "D:c"), name: "D"),
-            Triangle(x: Vertex(x:227.3, y:232.3, name: "E:a"), y: Vertex(x:73.0, y:264.3, name: "E:b"), z: Vertex(x:87.7, y:166.3, name: "E:c"), name: "E"),
-            Triangle(x: Vertex(x:115.3, y:310.0, name: "F:a"), y: Vertex(x:73.0, y:264.3, name: "F:b"), z: Vertex(x:227.3, y:232.3, name: "F:c"), name: "F"),
-            Triangle(x: Vertex(x:115.3, y:310.0, name: "G:a"), y: Vertex(x:227.3, y:232.3, name: "G:b"), z: Vertex(x:211.7, y:307.0, name: "G:c"), name: "G"),
-        ])
-
-        return (input, expected)
+    func testTriangleEquality() {
+        let x = Vertex(x: 1, y: 2, name: "x")
+        let y = Vertex(x: 3, y: 4, name: "y")
+        let z = Vertex(x: 5, y: 6, name: "z")
+        let a = Triangle(edge: Edge(x: x, y: y, name: "m"), point: z, name: "a")
+        let b = Triangle(edge: Edge(x: y, y: z, name: "n"), point: x, name: "b")
+        XCTAssertEqual(a, b)
+        
+        let w = Vertex(x: 0, y: 0, name: "w")
+        let c = Triangle(x: w, y: x, z: y, name: "c")
+        XCTAssertNotEqual(a, c)
+        XCTAssertNotEqual(b, c)
     }
     
     func testTriangularNumbers() {
