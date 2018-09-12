@@ -172,7 +172,12 @@ extension Triangle {
 extension Triangle: Hashable {
 
     public var hashValue: Int {
-        return String(describing: self).replacingOccurrences(of: name, with: "").hashValue
+        let string = description
+            .replacingOccurrences(of: "“\(name)”", with: "")
+            .replacingOccurrences(of: "“\(a.a.name)”", with: "")
+            .replacingOccurrences(of: "“\(a.b.name)”", with: "")
+            .replacingOccurrences(of: "“\(b.b.name)”", with: "")
+        return string.hashValue
     }
 
 }
@@ -180,7 +185,7 @@ extension Triangle: Hashable {
 extension Triangle: CustomStringConvertible {
 
     public var description: String {
-        return String(format: "Triangle “%@”: [%@ %@ %@]", name, String(describing: a.a), String(describing: a.b), String(describing: b.b))
+        return String(format: "Triangle “%@”: [%@]", name, Set<Vertex>([a.a, a.b, b.b]).sortedLexicographically().map({ String(describing: $0) }).joined(separator: ", "))
     }
 
 }
