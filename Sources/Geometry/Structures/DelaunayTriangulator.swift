@@ -223,23 +223,25 @@ private extension DelaunayTriangulator {
 
     func isEdgeLegal(triangulation: LocationGraphNode, node: LocationGraphNode, edge: Edge, vertex: Vertex, otherPoint: Vertex, callDepth: Int) -> Bool {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
-        if triangulation.triangle.edges().contains(edge) {
+        let rootEdge = triangulation.triangle.edges().contains(edge)
+        guard !rootEdge else {
             log(String(format: "%@ Skipping edge on root triangle.", depthMarker))
             return true
         }
 
         let hasGhostPoint = ghosts.intersection(Set(edge.endpoints())).count > 0
-        if hasGhostPoint && !isIllegalGhostEdge(edge: edge, vertex: vertex, otherPoint: otherPoint, callDepth: callDepth) {
-            log(String(format: "%@ Edge (%@) is legal due to ghost point rules.", depthMarker, String(describing: edge)))
+        guard !hasGhostPoint else {
+            return !isIllegalGhostEdge(edge: edge, vertex: vertex, otherPoint: otherPoint, callDepth: callDepth)
+        }
+        
+        guard !ghosts.contains(otherPoint) else {
+            log(String(format: "%@ otherPoint (%@) is a ghost point, and cannot lie within any circumcircle", depthMarker, String(describing: otherPoint)))
             return true
         }
 
-        if !hasGhostPoint && !node.triangle.circumcircleContains(vertex: otherPoint) {
-            log(String(format: "%@ Other point %@ lies outside circumcircle of triangle %@. Edge %@ is legal.", depthMarker, String(describing: otherPoint), String(describing: node.triangle), String(describing: edge)))
-            return true
-        }
-
-        return false
+        let passesIncircleTest = !node.triangle.circumcircleContains(vertex: otherPoint)
+        log(String(format: "%@ Other point %@ lies %@ circumcircle of triangle %@. Edge %@ is %@.", depthMarker, String(describing: otherPoint), passesIncircleTest ? "outside" : "inside or on", String(describing: node.triangle), String(describing: edge), passesIncircleTest ? "legal" : "illegal"))
+        return passesIncircleTest
     }
 
     func isIllegalGhostEdge(edge: Edge, vertex: Vertex, otherPoint: Vertex, callDepth: Int) -> Bool {
