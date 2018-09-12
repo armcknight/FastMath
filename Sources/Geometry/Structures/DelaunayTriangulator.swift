@@ -248,13 +248,13 @@ private extension DelaunayTriangulator {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         // ghost points never lie inside a circumcircle
         if ghosts.contains(otherPoint) {
-            log(String(format: "%@ Test point is a ghost point.", depthMarker))
+            log(String(format: "%@ Edge is legal due to ghost point rule: Test point is a ghost point.", depthMarker))
             return false
         }
 
         // if vertex is ghost2 and ghost1 is an endopint of the edge
         if vertex == ghost1 && edge.endpoints().contains(ghost2) {
-            log(String(format: "%@ Original point is ghost1 and edge contains ghost2.", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: Original point is ghost1 and edge contains ghost2.", depthMarker))
             return true
         }
 
@@ -263,43 +263,44 @@ private extension DelaunayTriangulator {
         let bLeftOfTestEdge = edge.b.liesToLeft(ofEdge:testEdge)
 
         if edge.a == ghost1 && otherLargerThanVertex && !bLeftOfTestEdge {
-            log(String(format: "%@ edge.a == ghost1 && otherLargerThanVertex && !bLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.a == ghost1 && otherLargerThanVertex && !bLeftOfTestEdge", depthMarker))
             return true
         }
         if edge.a == ghost1 && !otherLargerThanVertex && bLeftOfTestEdge {
-            log(String(format: "%@ edge.a == ghost1 && !otherLargerThanVertex && bLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.a == ghost1 && !otherLargerThanVertex && bLeftOfTestEdge", depthMarker))
             return true
         }
 
         if edge.a == ghost2 && otherLargerThanVertex && bLeftOfTestEdge {
-            log(String(format: "%@ edge.a == ghost2 && otherLargerThanVertex && bLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.a == ghost2 && otherLargerThanVertex && bLeftOfTestEdge", depthMarker))
             return true
         }
         if edge.a == ghost2 && !otherLargerThanVertex && !bLeftOfTestEdge {
-            log(String(format: "%@ edge.a == ghost2 && !otherLargerThanVertex && !bLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.a == ghost2 && !otherLargerThanVertex && !bLeftOfTestEdge", depthMarker))
             return true
         }
 
         let aLeftOfTestEdge = edge.a.liesToLeft(ofEdge:testEdge)
 
         if edge.b == ghost1 && otherLargerThanVertex && !aLeftOfTestEdge {
-            log(String(format: "%@ edge.b == ghost1 && otherLargerThanVertex && !aLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.b == ghost1 && otherLargerThanVertex && !aLeftOfTestEdge", depthMarker))
             return true
         }
         if edge.b == ghost1 && !otherLargerThanVertex && aLeftOfTestEdge {
-            log(String(format: "%@ edge.b == ghost1 && !otherLargerThanVertex && aLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.b == ghost1 && !otherLargerThanVertex && aLeftOfTestEdge", depthMarker))
             return true
         }
 
         if edge.b == ghost2 && otherLargerThanVertex && aLeftOfTestEdge {
-            log(String(format: "%@ edge.b == ghost2 && otherLargerThanVertex && aLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.b == ghost2 && otherLargerThanVertex && aLeftOfTestEdge", depthMarker))
             return true
         }
         if edge.b == ghost2 && !otherLargerThanVertex && !aLeftOfTestEdge {
-            log(String(format: "%@ edge.b == ghost2 && !otherLargerThanVertex && !aLeftOfTestEdge", depthMarker))
+            log(String(format: "%@ Edge is illegal due to ghost point rule: edge.b == ghost2 && !otherLargerThanVertex && !aLeftOfTestEdge", depthMarker))
             return true
         }
 
+        log(String(format: "%@ Edge is legal due to ghost point rules", depthMarker))
         return false
     }
 
