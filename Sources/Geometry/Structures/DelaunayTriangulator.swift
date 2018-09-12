@@ -214,7 +214,9 @@ private extension DelaunayTriangulator {
 
         // MARK: RECURSION - propogate edge legalization
         legalize(edge: Edge(x: edge.a, y: otherPoint, name: "RecursivelyLegalized_A"), vertex: vertex, node: nodeA, triangulation: triangulation, callDepth: callDepth + 1)
-        legalize(edge: Edge(x: edge.b, y: otherPoint, name: "RecursivelyLegalized_B"), vertex: vertex, node: nodeB, triangulation: triangulation, callDepth: callDepth + 1)
+        legalize(edge: Edge(x: edge.a, y: vertex, name: "RecursivelyLegalized_B"), vertex: otherPoint, node: nodeA, triangulation: triangulation, callDepth: callDepth + 1)
+        legalize(edge: Edge(x: edge.b, y: otherPoint, name: "RecursivelyLegalized_C"), vertex: vertex, node: nodeB, triangulation: triangulation, callDepth: callDepth + 1)
+        legalize(edge: Edge(x: edge.b, y: vertex, name: "RecursivelyLegalized_D"), vertex: otherPoint, node: nodeB, triangulation: triangulation, callDepth: callDepth + 1)
 
         log(String(format: "%@ Finished legalizing edge (%@) with vertex (%@).", depthMarker, String(describing: edge), String(describing: vertex)))
     }
