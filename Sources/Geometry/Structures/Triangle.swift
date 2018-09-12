@@ -187,6 +187,12 @@ extension Triangle: CustomStringConvertible {
     public var description: String {
         return String(format: "Triangle “%@”: [%@]", name, Set<Vertex>([a.a, a.b, b.b]).sortedLexicographically().map({ String(describing: $0) }).joined(separator: ", "))
     }
+    
+    public func generatingCode(id: Int) -> String {
+        return """
+        let triangle\(id) = Triangle(x:Vertex(x:\(a.a.x),y:\(a.a.y),name:"x"),y:Vertex(x:\(a.b.x),y:\(a.b.y),name:"y"),z:Vertex(x:\(b.b.x),y:\(b.b.y),name:"z"),name:"id")
+        """
+    }
 
 }
 
