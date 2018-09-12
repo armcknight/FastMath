@@ -199,3 +199,17 @@ extension Triangle: CustomStringConvertible {
 public func ==(lhs: Triangle, rhs: Triangle) -> Bool {
     return Set<Vertex>([lhs.a.a, lhs.a.b, lhs.b.b]).symmetricDifference(Set<Vertex>([rhs.a.a, rhs.a.b, rhs.b.b])).count == 0
 }
+
+extension Set where Element == Triangle {
+    func points() -> Set<Vertex> {
+        return reduce(Set<Vertex>()) { (result, triangle) -> Set<Vertex> in
+            result.union(Set<Vertex>([triangle.a.a, triangle.a.b, triangle.b.b]))
+        }
+    }
+    
+    func briefDescription() -> String {
+        return map({ triangle in
+            "[" + triangle.points().sortedLexicographically().map { "<\($0.x), \($0.y)>" }.joined(separator: ", ") + "]"
+        }).sorted().joined(separator: "\n")
+    }
+}
