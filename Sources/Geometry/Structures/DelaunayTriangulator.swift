@@ -94,10 +94,6 @@ private extension DelaunayTriangulator {
         assignNewTriangleNeighbors(newNode: nodeB, neighbor1: nodeC, neighbor2: nodeA, edge: edgeB, parentNeighbor: containingNode.neighborB)
         assignNewTriangleNeighbors(newNode: nodeC, neighbor1: nodeA, neighbor2: nodeB, edge: edgeC, parentNeighbor: containingNode.neighborC)
 
-        assignNewTriangleAsNeighbor(parentNeighbor: containingNode.neighborA, edge: edgeA, newNode: nodeA)
-        assignNewTriangleAsNeighbor(parentNeighbor: containingNode.neighborB, edge: edgeB, newNode: nodeB)
-        assignNewTriangleAsNeighbor(parentNeighbor: containingNode.neighborC, edge: edgeC, newNode: nodeC)
-
         [nodeA, nodeB, nodeC].forEach {
             log(String(format: "New triangle's (%@) neighbors: \n\ta: %@\n\tb: %@\n\tc: %@", String(describing: $0.triangle), String(describing: $0.neighborA?.triangle), String(describing: $0.neighborB?.triangle), String(describing: $0.neighborC?.triangle)))
         }
@@ -108,7 +104,44 @@ private extension DelaunayTriangulator {
         legalize(edge: edgeB, vertex: point, node: nodeB, triangulation: triangulation)
         legalize(edge: edgeC, vertex: point, node: nodeC, triangulation: triangulation)
     }
-
+    
+    /// Assign the three neighbors for a new `Triangle`'s `LocationGraphNode` across each of its edges, and set it as the neighbor for each of the parent `LocationGraphNode`'s neighbors.
+    ///
+    /// - Parameters:
+    ///   - newNode: The `LocationGraphNode` for the new `Triangle` inserted into the triangulation.
+    ///   - neighbor1: The `LocationGraphNode` for the `Triangle` across from the `Edge` whose `a` `Vertex` is the `b` `Vertex` of the provided edge.
+    ///   - neighbor2: The `LocationGraphNode` for the `Triangle` across from the `Edge` whose `a` `Vertex` is the `b` `Vertex` of the edge corresponding to `neighbor1`.
+    ///   - edge: The `Edge` of the parent `LocationGraphNode`'s `Triangle` that was used to create the `Triangle` in `newNode`.
+    ///   - parentNeighbor: The `newNode`'s parent `LocationGraphNode`'s neighbor across `edge`, which will become the neighbor of `newNode` across `edge`.
+    ///
+    /// - Note: The geometrical representation. `edge` is labeled, as is the inserted point that caused the new `Triangle` to be inserted. Note the counterclockwise direction of `newNode`'s `Triangle`'s edges means we immediately know which edges `neighbor1` and `neighbor2` are adjacent across, since neighbor references are specific to edges.
+    ///```
+    ///    _________________________
+    ///   |                        /↑\
+    ///   |                       / | \
+    ///   |                      /  |  \
+    ///   |                     /   |   \
+    ///   |                    /    |    \
+    ///   |  parentNeighbor   /     |     \
+    ///   |                  /      |      \
+    ///   |                 /       |       \
+    ///   |                /        |        \
+    ///   |               /         |         \
+    ///   |             edge        |          \
+    ///   |             /           |           \
+    ///   |            /            |            \
+    ///   |           /             |             \
+    ///   |          /              |              \
+    ///   |         /    newNode    |   neighbor2   \
+    ///   |        /               ↗*.               \
+    ///   |       /            ,/   ↑  \ .            \
+    ///   |      /          ,/      |      \.          \
+    ///   |     /       , /     inserted      \.        \
+    ///   |    /    , /          point           \ .     \
+    ///   |   /  ,/                                 \.    \
+    ///   |  / /            neighbor1                  \ . \
+    ///   |.↙______________________________________________\\
+    ///```
     func assignNewTriangleNeighbors(newNode: LocationGraphNode, neighbor1: LocationGraphNode, neighbor2: LocationGraphNode, edge: Edge, parentNeighbor: LocationGraphNode?) {
         if newNode.triangle.a == edge {
             newNode.neighborA = parentNeighbor
@@ -123,20 +156,27 @@ private extension DelaunayTriangulator {
             newNode.neighborB = neighbor2
             newNode.neighborC = parentNeighbor
         }
-    }
-
-    func assignNewTriangleAsNeighbor(parentNeighbor: LocationGraphNode?, edge: Edge, newNode: LocationGraphNode) {
-        guard let parentNeighbor = parentNeighbor else { return }
-
-        if parentNeighbor.triangle.a == edge {
-            parentNeighbor.neighborA = newNode
-        } else if parentNeighbor.triangle.b == edge {
-            parentNeighbor.neighborB = newNode
-        } else if parentNeighbor.triangle.c == edge {
-            parentNeighbor.neighborC = newNode
+        
+        // assign the parent container's neighbor's appropriate neighbor (according to the specified edge) property to the new node
+        if let parentNeighbor = parentNeighbor {
+            if parentNeighbor.triangle.a == edge {
+                parentNeighbor.neighborA = newNode
+            } else if parentNeighbor.triangle.b == edge {
+                parentNeighbor.neighborB = newNode
+            } else if parentNeighbor.triangle.c == edge {
+                parentNeighbor.neighborC = newNode
+            }
         }
     }
 
+    /// Test an edge for the Delaunay property and if it fails, flip it.
+    ///
+    /// - Parameters:
+    ///   - edge: An `Edge` of a newly inserted `Triangle`, to test for the Delaunay property.
+    ///   - vertex: The new point being inserted into the triangulation.
+    ///   - node: The `LocationGraphNode` containing the new `Triangle` created after inserting the point, whose edges must be tested for the Delaunay property.
+    ///   - triangulation: The root `LocationGraphNode` that references the full triangulation being maintained.
+    ///   - callDepth: The current level of recursion, for logs.
     func legalize(edge: Edge, vertex: Vertex, node: LocationGraphNode, triangulation: LocationGraphNode, callDepth: Int = 0) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         log(String(format: "%@ Legalizing edge (%@) with vertex (%@).", depthMarker, String(describing: edge), String(describing: vertex)))
@@ -167,7 +207,7 @@ private extension DelaunayTriangulator {
 
         assignNeighborsAfterEdgeFlip(node: node, neighbor: neighbor, nodeA: nodeA, nodeB: nodeB, legalEdge: legalEdge, edge: edge, callDepth: callDepth)
 
-        // insert new nodes in the data structure
+        // Insert new nodes in the data structure, at a new level under the nodes whose triangles were invalidated by the edge flip. Since the new triangles occupy the same space, and each intersects with both old triangles, then assign them both as children of each old triangle.
         let newNodes = [nodeA, nodeB]
         node.children.append(contentsOf: newNodes)
         neighbor.children.append(contentsOf: newNodes)
@@ -259,51 +299,68 @@ private extension DelaunayTriangulator {
         return false
     }
 
-    ///            ^                                ^
-    ///           /|\                              /|\
-    ///          / | \                            / | \
-    ///         /  |  \                          /  |  \
-    ///        /   |   \                        /   |   \
-    ///       / W  ^  X \                      / W  ^  X \
-    ///      /   /   \   \                    /   / | \   \
-    ///     /  /eW   eX\  \                  /  /eW | eX\  \
-    ///    / /           \ \                / /     |     \ \
-    ///   //      node     \\              //       |       \\
-    ///   -------------------    ---->     /    A   |  B     \
-    ///   \\    neighbor   //              \\       |       //
-    ///    \ \           / /                \ \     |     / /
-    ///     \  \eY   eZ/  /                  \  \eY | eZ/  /
-    ///      \   \   /   /                    \   \ | /   /
-    ///       \    v    /                      \    v    /
-    ///        \ Y | Z /                        \ Y | Z /
-    ///         \  |  /                          \  |  /
-    ///          \ | /                            \ | /
-    ///           \|/                              \|/
-    ///            v                                v
+    /// After an edge flip, the two triangles adjacent on the old illegal edge are replaced by two new triangles adjecent on the new legal edge are created and inserted in the old ones' places. Get the old triangles' location graph nodes' neighbors and assign them as the new ones' neighbors across the appropriate edges.
+    ///
+    /// - Parameters:
+    ///   - node: The `Triangle` formed by the `Edge` that was flipped and the `Vertex` being inserted into the triangulation.
+    ///   - neighbor: The `Triangle` neighboring `node`'s `Triangle`, incident on `Edge`.
+    ///   - nodeA: The new `Triangle` formed after edge flipping by the start `Vertex` of the flipped edge, the inserted `Vertex` and the `Vertex` in `neighbor` not incident on `edge`.
+    ///   - nodeB: The new `Triangle` formed after edge flipping by the end `Vertex` of the flipped edge, the inserted `Vertex` and the `Vertex` in `neighbor` not incident on `edge`.
+    ///   - legalEdge: The new `Edge` formed after flipping `edge`.
+    ///   - edge: The illegal `Edge` failing the Delaunay property.
+    ///   - callDepth: The current level of recursion, for logs.
+    ///
+    /// - Note: Configuration before and after:
+    /// ```
+    ///               ^                                ^
+    ///              /|\                              /|\
+    ///             / | \                            / | \
+    ///            /  |  \                          /  |  \
+    ///           /   |   \                        /   |   \
+    ///          / W  ^  X \                      / W  ^  X \
+    ///         /   /   \   \                    /   / | \   \
+    ///        /  /eW   eX\  \                  /  /   |   \  \
+    ///       / /           \ \                / /eW   |   eX\ \
+    ///      //      node     \\              //       |       \\
+    ///      --illegal-edge-----    ---->     /  nodeA | nodeB  \
+    ///      \\    neighbor   //              \\       |       //
+    ///       \ \           / /                \ \eY   |   eZ/ /
+    ///        \  \eY   eZ/  /                  \  \   |↖  /  /
+    ///         \   \   /   /                    \legal|edge /
+    ///          \    v    /                      \    v    /
+    ///           \ Y | Z /                        \ Y | Z /
+    ///            \  |  /                          \  |  /
+    ///             \ | /                            \ | /
+    ///              \|/                              \|/
+    ///               v                                v
+    /// ```
     func assignNeighborsAfterEdgeFlip(node: LocationGraphNode, neighbor: LocationGraphNode, nodeA: LocationGraphNode, nodeB: LocationGraphNode, legalEdge: Edge, edge: Edge, callDepth: Int) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         // determine new neighbors after the edge flip, and the edges they meet at
         var northwestNeighbor, northeastNeighbor, southwestNeighbor, southeastNeighbor: LocationGraphNode?
         var northwestEdge, northeastEdge, southwestEdge, southeastEdge: Edge
 
-        ((northwestNeighbor, northeastNeighbor), (northwestEdge, northeastEdge)) = findNewNeighborsAndEdges(target: node, edge: edge, callDepth: callDepth)
-        ((southwestNeighbor, southeastNeighbor), (southwestEdge, southeastEdge)) = findNewNeighborsAndEdges(target: neighbor, edge: edge, callDepth: callDepth)
+        // ((W, X), (eW, eX))
+        ((northwestNeighbor, northeastNeighbor), (northwestEdge, northeastEdge)) = findNewNeighborsAndEdgesAfterEdgeFlip(target: node, edge: edge, callDepth: callDepth)
+        
+        // ((Y, Z), (eY, eZ))
+        ((southwestNeighbor, southeastNeighbor), (southwestEdge, southeastEdge)) = findNewNeighborsAndEdgesAfterEdgeFlip(target: neighbor, edge: edge, callDepth: callDepth)
 
         // set all the new neighbor relationships
         zip([northwestNeighbor, northeastNeighbor, southwestNeighbor, southeastNeighbor], [northwestEdge, northeastEdge, southwestEdge, southeastEdge]).forEach({ (arg) in let (newNeighbor, edge) = arg
-            setSurroundingNeighbors(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: newNeighbor, edge: edge, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
+            setSurroundingNeighborsAfterEdgeFlip(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: newNeighbor, edge: edge, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
         })
 
         // set each new triangle as the other's neighbor
-        setNeighbors(from: nodeA, to: nodeB, acrossEdge: legalEdge, callDepth: callDepth)
-        setNeighbors(from: nodeB, to: nodeA, acrossEdge: legalEdge, callDepth: callDepth)
+        setNeighborsAcrossFlippedEdge(from: nodeA, to: nodeB, acrossEdge: legalEdge, callDepth: callDepth)
+        setNeighborsAcrossFlippedEdge(from: nodeB, to: nodeA, acrossEdge: legalEdge, callDepth: callDepth)
 
         [nodeA, nodeB].forEach {
             log(String(format: "%@ New triangle's (%@) neighbors: \n\ta: %@\n\tb: %@\n\tc: %@", depthMarker, String(describing: $0.triangle), String(describing: $0.neighborA?.triangle), String(describing: $0.neighborB?.triangle), String(describing: $0.neighborC?.triangle)))
         }
     }
 
-    func findNewNeighborsAndEdges(target: LocationGraphNode, edge: Edge, callDepth: Int) -> (neighbors: (LocationGraphNode?, LocationGraphNode?), edges: (Edge, Edge)) {
+    func findNewNeighborsAndEdgesAfterEdgeFlip(target: LocationGraphNode, edge: Edge, callDepth: Int) -> (neighbors: (LocationGraphNode?, LocationGraphNode?), edges: (Edge, Edge)) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         var neighborEdge: Edge
         var neighbor: LocationGraphNode?
@@ -334,8 +391,8 @@ private extension DelaunayTriangulator {
     }
 
     /// Sets `to` as `from`'s neighbor across `edge`
-    /// - warning: not commutative
-    func setNeighbors(from: LocationGraphNode, to: LocationGraphNode, acrossEdge edge: Edge, callDepth: Int) {
+    /// - Warning: Not commutative. Must call one time each for a pair of neighbors.
+    func setNeighborsAcrossFlippedEdge(from: LocationGraphNode, to: LocationGraphNode, acrossEdge edge: Edge, callDepth: Int) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         if from.triangle.a == edge {
             log(String(format: "%@ Setting triangle's (%@) A neighbor to (%@) across edge (%@).", depthMarker, String(describing: from.triangle), String(describing: to.triangle), String(describing: edge)))
@@ -351,7 +408,7 @@ private extension DelaunayTriangulator {
         }
     }
 
-    func setSurroundingNeighbors(newNodeA: LocationGraphNode, newNodeB: LocationGraphNode, newNeighbor: LocationGraphNode?, edge: Edge, oldNode: LocationGraphNode, oldNeighbor: LocationGraphNode, callDepth: Int) {
+    func setSurroundingNeighborsAfterEdgeFlip(newNodeA: LocationGraphNode, newNodeB: LocationGraphNode, newNeighbor: LocationGraphNode?, edge: Edge, oldNode: LocationGraphNode, oldNeighbor: LocationGraphNode, callDepth: Int) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         if newNodeA.triangle.a == edge {
             log(String(format: "%@ Setting triangle's (%@) A neighbor to (%@) across edge (%@).", depthMarker, String(describing: newNodeA.triangle), String(describing: newNeighbor?.triangle), String(describing: edge)))
