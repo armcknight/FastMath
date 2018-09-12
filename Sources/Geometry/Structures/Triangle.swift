@@ -197,5 +197,5 @@ extension Triangle: CustomStringConvertible {
 }
 
 public func ==(lhs: Triangle, rhs: Triangle) -> Bool {
-    return Set<Edge>([lhs.a, lhs.b, lhs.c]) == Set<Edge>([rhs.a, rhs.b, rhs.c])
+    return Set<Vertex>([lhs.a.a, lhs.a.b, lhs.b.b]).symmetricDifference(Set<Vertex>([rhs.a.a, rhs.a.b, rhs.b.b])).count == 0
 }
