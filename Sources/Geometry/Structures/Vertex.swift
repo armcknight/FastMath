@@ -16,18 +16,39 @@ let ghosts: Set<Vertex> = Set<Vertex>([ghost1, ghost2])
 public class Vertex {
 
     public var x, y: Double
-    public let name: String
+    
+    /// Override value, if one was provided in `init(point:name:)` or `init(x:y:name:)`.
+    /// - Seealso: `name`.
+    private var _name: String?
+    
+    /// Used to generate a name for each instance created with `init(point:)` or `init(x:y:)` with no name override.
+    /// - Seealso: `name`.
+    private static var id: Int = 0
+    
+    /// Either the overriden value provided in `_name` if one exists, or the `String` representation of `id`.
+    /// - Postcondition: `id` is incremented by 1 if `_name` is `nil`.
+    /// - Seealso: `_name` and `id`.
+    public lazy var name: String = {
+        guard let nameOverride = _name else {
+            let nextID = Vertex.id
+            Vertex.id += 1
+            let nextName = String(describing: nextID)
+            self._name = nextName
+            return nextName
+        }
+        return nameOverride
+    }()
 
-    public init(point: CGPoint, name: String) {
+    public init(point: CGPoint, name: String? = nil) {
         self.x = Double(point.x)
         self.y = Double(point.y)
-        self.name = name
+        self._name = name
     }
 
-    init(x: Double, y: Double, name: String) {
+    init(x: Double, y: Double, name: String? = nil) {
         self.x = x
         self.y = y
-        self.name = name
+        self._name = name
     }
 
 }

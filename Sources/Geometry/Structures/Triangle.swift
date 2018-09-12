@@ -8,15 +8,35 @@
 
 import Foundation
 
-public struct Triangle {
+public class Triangle {
 
     //a, b, c are directed edges in counterclockwise order
     public var a, b, c: Edge
     
-    public let name: String
-
-    init(x: Vertex, y: Vertex, z: Vertex, name: String) {
-        self.name = name
+    /// Override value, if one was provided in `init(x:y:z:name:)` or `init(edge:point:name:)`.
+    /// - Seealso: `name`.
+    private var _name: String?
+    
+    /// Used to generate a name for each instance created with `init(x:y:z:)` or `init(edge:point:)` with no name override.
+    /// - Seealso: `name`.
+    private static var id: Int = 0
+    
+    /// Either the overriden value provided in `_name` if one exists, or the `String` representation of `id`.
+    /// - Postcondition: `id` is incremented by 1 if `_name` is `nil`.
+    /// - Seealso: `_name` and `id`.
+    public lazy var name: String = {
+        guard let nameOverride = _name else {
+            let nextID = Triangle.id
+            Triangle.id += 1
+            let nextName = String(describing: nextID)
+            self._name = nextName
+            return nextName
+        }
+        return nameOverride
+    }()
+    
+    init(x: Vertex, y: Vertex, z: Vertex, name: String? = nil) {
+        self._name = name
         
         let points: Set<Vertex> = [x, y, z]
         let intersection = ghosts.intersection(Set<Vertex>(points)).count
@@ -124,7 +144,7 @@ public struct Triangle {
         log(String(format: "Created %@.", String(describing: self)))
     }
 
-    init(edge: Edge, point: Vertex, name: String) {
+    convenience init(edge: Edge, point: Vertex, name: String? = nil) {
         self.init(x: point, y: edge.a, z: edge.b, name: name)
     }
 
