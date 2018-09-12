@@ -90,9 +90,9 @@ private extension DelaunayTriangulator {
         let nodeB = LocationGraphNode(triangle: triangleB, parents: [ containingNode ])
         let nodeC = LocationGraphNode(triangle: triangleC, parents: [ containingNode ])
 
-        assignNewtriangleNeighbors(newNode: nodeA, neighbor1: nodeB, neighbor2: nodeC, edge: edgeA, parentNeighbor: containingNode.neighborA)
-        assignNewtriangleNeighbors(newNode: nodeB, neighbor1: nodeC, neighbor2: nodeA, edge: edgeB, parentNeighbor: containingNode.neighborB)
-        assignNewtriangleNeighbors(newNode: nodeC, neighbor1: nodeA, neighbor2: nodeB, edge: edgeC, parentNeighbor: containingNode.neighborC)
+        assignNewTriangleNeighbors(newNode: nodeA, neighbor1: nodeB, neighbor2: nodeC, edge: edgeA, parentNeighbor: containingNode.neighborA)
+        assignNewTriangleNeighbors(newNode: nodeB, neighbor1: nodeC, neighbor2: nodeA, edge: edgeB, parentNeighbor: containingNode.neighborB)
+        assignNewTriangleNeighbors(newNode: nodeC, neighbor1: nodeA, neighbor2: nodeB, edge: edgeC, parentNeighbor: containingNode.neighborC)
 
         assignNewTriangleAsNeighbor(parentNeighbor: containingNode.neighborA, edge: edgeA, newNode: nodeA)
         assignNewTriangleAsNeighbor(parentNeighbor: containingNode.neighborB, edge: edgeB, newNode: nodeB)
@@ -109,7 +109,7 @@ private extension DelaunayTriangulator {
         legalize(edge: edgeC, vertex: point, node: nodeC, triangulation: triangulation)
     }
 
-    func assignNewtriangleNeighbors(newNode: LocationGraphNode, neighbor1: LocationGraphNode, neighbor2: LocationGraphNode, edge: Edge, parentNeighbor: LocationGraphNode?) {
+    func assignNewTriangleNeighbors(newNode: LocationGraphNode, neighbor1: LocationGraphNode, neighbor2: LocationGraphNode, edge: Edge, parentNeighbor: LocationGraphNode?) {
         if newNode.triangle.a == edge {
             newNode.neighborA = parentNeighbor
             newNode.neighborB = neighbor1
