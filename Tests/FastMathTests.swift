@@ -73,8 +73,24 @@ class FastMathTests: XCTestCase {
         
         let w = Vertex(x: 0, y: 0, name: "w")
         let c = Triangle(x: w, y: x, z: y, name: "c")
+        let d = Triangle(x: w, y: y, z: z, name: "d")
         XCTAssertNotEqual(a, c)
         XCTAssertNotEqual(b, c)
+        XCTAssertNotEqual(a, d)
+        XCTAssertNotEqual(b, d)
+        XCTAssertNotEqual(c, d)
+        
+        let setA = Set<Triangle>([a, c])
+        let setB = Set<Triangle>([b, c])
+        let setC = Set<Triangle>([a, b, c])
+        XCTAssertEqual(setA, setB)
+        XCTAssertEqual(setA, setC)
+        XCTAssertEqual(setB, setC)
+        
+        let setD = Set<Triangle>([a, d])
+        XCTAssertNotEqual(setA, setD)
+        XCTAssertNotEqual(setB, setD)
+        XCTAssertNotEqual(setC, setD)
     }
     
     func testTriangularNumbers() {
