@@ -35,7 +35,7 @@ public class Vertex {
 extension Vertex: Hashable {
 
     public var hashValue: Int {
-        return String(describing: self).replacingOccurrences(of: name, with: "").hashValue
+        return String(format: "Vertex: [%f %f]", x, y).hashValue
     }
 
 }
