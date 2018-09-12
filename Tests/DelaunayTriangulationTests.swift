@@ -50,14 +50,52 @@ class DelaunayTriangulationTests: XCTestCase {
         let tri1 = LocationGraphNode(triangle: Triangle(x: a, y: c, z: d, name: "Expected child triangle 1"), parents: [parent])
         let tri2 = LocationGraphNode(triangle: Triangle(x: a, y: b, z: d, name: "Expected child triangle 2"), parents: [parent])
         parent.children = [tri1, tri2]
-        let expected = parent.getTriangles()!
+        let expected = parent.getTriangles()
         
         let computed = DelaunayTriangulator()
             .triangulate(points: points)!
-            .getTriangles()!
+            .getTriangles()
         
         
         XCTAssert(expected.elementsEqual(computed), "\nexpected\n\(expected)\nbut got\n\(computed)")
+    }
+    
+    func testTriangulator() {
+        let triangle0 = Triangle(x:Vertex(x:108.5,y:153.0,name:"x"),y:Vertex(x:166.0,y:60.0,name:"y"),z:Vertex(x:259.0,y:142.0,name:"z"),name:"id")
+        let triangle1 = Triangle(x:Vertex(x:53.5,y:317.5,name:"x"),y:Vertex(x:47.5,y:56.0,name:"y"),z:Vertex(x:69.5,y:237.0,name:"z"),name:"id")
+        let triangle2 = Triangle(x:Vertex(x:53.5,y:317.5,name:"x"),y:Vertex(x:17.0,y:497.5,name:"y"),z:Vertex(x:47.5,y:56.0,name:"z"),name:"id")
+        let triangle3 = Triangle(x:Vertex(x:239.5,y:350.5,name:"x"),y:Vertex(x:162.0,y:282.0,name:"y"),z:Vertex(x:210.5,y:240.5,name:"z"),name:"id")
+        let triangle4 = Triangle(x:Vertex(x:69.5,y:237.0,name:"x"),y:Vertex(x:47.5,y:56.0,name:"y"),z:Vertex(x:108.5,y:153.0,name:"z"),name:"id")
+        let triangle5 = Triangle(x:Vertex(x:162.0,y:282.0,name:"x"),y:Vertex(x:108.5,y:153.0,name:"y"),z:Vertex(x:210.5,y:240.5,name:"z"),name:"id")
+        let triangle6 = Triangle(x:Vertex(x:122.5,y:528.5,name:"x"),y:Vertex(x:197.0,y:460.5,name:"y"),z:Vertex(x:265.0,y:506.5,name:"z"),name:"id")
+        let triangle7 = Triangle(x:Vertex(x:239.5,y:350.5,name:"x"),y:Vertex(x:259.0,y:142.0,name:"y"),z:Vertex(x:289.0,y:51.5,name:"z"),name:"id")
+        let triangle8 = Triangle(x:Vertex(x:239.5,y:350.5,name:"x"),y:Vertex(x:289.0,y:51.5,name:"y"),z:Vertex(x:265.0,y:506.5,name:"z"),name:"id")
+        let triangle9 = Triangle(x:Vertex(x:166.0,y:60.0,name:"x"),y:Vertex(x:47.5,y:56.0,name:"y"),z:Vertex(x:289.0,y:51.5,name:"z"),name:"id")
+        let triangle10 = Triangle(x:Vertex(x:210.5,y:240.5,name:"x"),y:Vertex(x:108.5,y:153.0,name:"y"),z:Vertex(x:259.0,y:142.0,name:"z"),name:"id")
+        let triangle11 = Triangle(x:Vertex(x:162.0,y:282.0,name:"x"),y:Vertex(x:69.5,y:237.0,name:"y"),z:Vertex(x:108.5,y:153.0,name:"z"),name:"id")
+        let triangle12 = Triangle(x:Vertex(x:145.0,y:440.5,name:"x"),y:Vertex(x:80.0,y:442.0,name:"y"),z:Vertex(x:53.5,y:317.5,name:"z"),name:"id")
+        let triangle13 = Triangle(x:Vertex(x:162.0,y:282.0,name:"x"),y:Vertex(x:53.5,y:317.5,name:"y"),z:Vertex(x:69.5,y:237.0,name:"z"),name:"id")
+        let triangle14 = Triangle(x:Vertex(x:108.5,y:153.0,name:"x"),y:Vertex(x:47.5,y:56.0,name:"y"),z:Vertex(x:166.0,y:60.0,name:"z"),name:"id")
+        let triangle15 = Triangle(x:Vertex(x:145.0,y:440.5,name:"x"),y:Vertex(x:53.5,y:317.5,name:"y"),z:Vertex(x:162.0,y:282.0,name:"z"),name:"id")
+        let triangle16 = Triangle(x:Vertex(x:239.5,y:350.5,name:"x"),y:Vertex(x:210.5,y:240.5,name:"y"),z:Vertex(x:259.0,y:142.0,name:"z"),name:"id")
+        let triangle17 = Triangle(x:Vertex(x:122.5,y:528.5,name:"x"),y:Vertex(x:80.0,y:442.0,name:"y"),z:Vertex(x:145.0,y:440.5,name:"z"),name:"id")
+        let triangle18 = Triangle(x:Vertex(x:17.0,y:497.5,name:"x"),y:Vertex(x:53.5,y:317.5,name:"y"),z:Vertex(x:80.0,y:442.0,name:"z"),name:"id")
+        let triangle19 = Triangle(x:Vertex(x:122.5,y:528.5,name:"x"),y:Vertex(x:17.0,y:497.5,name:"y"),z:Vertex(x:80.0,y:442.0,name:"z"),name:"id")
+        let triangle20 = Triangle(x:Vertex(x:265.0,y:506.5,name:"x"),y:Vertex(x:197.0,y:460.5,name:"y"),z:Vertex(x:239.5,y:350.5,name:"z"),name:"id")
+        let triangle21 = Triangle(x:Vertex(x:259.0,y:142.0,name:"x"),y:Vertex(x:166.0,y:60.0,name:"y"),z:Vertex(x:289.0,y:51.5,name:"z"),name:"id")
+        let triangle22 = Triangle(x:Vertex(x:197.0,y:460.5,name:"x"),y:Vertex(x:145.0,y:440.5,name:"y"),z:Vertex(x:239.5,y:350.5,name:"z"),name:"id")
+        let triangle23 = Triangle(x:Vertex(x:145.0,y:440.5,name:"x"),y:Vertex(x:162.0,y:282.0,name:"y"),z:Vertex(x:239.5,y:350.5,name:"z"),name:"id")
+        let triangle24 = Triangle(x:Vertex(x:122.5,y:528.5,name:"x"),y:Vertex(x:145.0,y:440.5,name:"y"),z:Vertex(x:197.0,y:460.5,name:"z"),name:"id")
+        
+        let expected = Set<Triangle>([triangle0, triangle1, triangle2, triangle3, triangle4, triangle5, triangle6, triangle7, triangle8, triangle9, triangle10, triangle11, triangle12, triangle13, triangle14, triangle15, triangle16, triangle17, triangle18, triangle19, triangle20, triangle21, triangle22, triangle23, triangle24])
+        
+        let points = expected.points()
+        
+        let triangulator = DelaunayTriangulator()
+        let triangulation = triangulator.triangulate(points: points)!
+        let computed = triangulation.getTriangles()
+        print(computed.symmetricDifference(expected).briefDescription())
+        XCTAssert(computed.symmetricDifference(expected).count == 0, "expected\n\(expected.briefDescription())\nbut got\n\(computed.briefDescription())")
     }
     
     func testTriangulation() {
