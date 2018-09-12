@@ -337,19 +337,17 @@ private extension DelaunayTriangulator {
     func assignNeighborsAfterEdgeFlip(node: LocationGraphNode, neighbor: LocationGraphNode, nodeA: LocationGraphNode, nodeB: LocationGraphNode, legalEdge: Edge, edge: Edge, callDepth: Int) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         // determine new neighbors after the edge flip, and the edges they meet at
-        var northwestNeighbor, northeastNeighbor, southwestNeighbor, southeastNeighbor: LocationGraphNode?
-        var northwestEdge, northeastEdge, southwestEdge, southeastEdge: Edge
+        var W, X, Y, Z: LocationGraphNode?
+        var eW, eX, eY, eZ: Edge
 
-        // ((W, X), (eW, eX))
-        ((northwestNeighbor, northeastNeighbor), (northwestEdge, northeastEdge)) = findNewNeighborsAndEdgesAfterEdgeFlip(target: node, edge: edge, callDepth: callDepth)
-        
-        // ((Y, Z), (eY, eZ))
-        ((southwestNeighbor, southeastNeighbor), (southwestEdge, southeastEdge)) = findNewNeighborsAndEdgesAfterEdgeFlip(target: neighbor, edge: edge, callDepth: callDepth)
+        ((W, X), (eW, eX)) = findNewNeighborsAndEdgesAfterEdgeFlip(target: node, edge: edge, callDepth: callDepth)
+        ((Y, Z), (eY, eZ)) = findNewNeighborsAndEdgesAfterEdgeFlip(target: neighbor, edge: edge, callDepth: callDepth)
 
         // set all the new neighbor relationships
-        zip([northwestNeighbor, northeastNeighbor, southwestNeighbor, southeastNeighbor], [northwestEdge, northeastEdge, southwestEdge, southeastEdge]).forEach({ (arg) in let (newNeighbor, edge) = arg
-            setSurroundingNeighborsAfterEdgeFlip(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: newNeighbor, edge: edge, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
-        })
+        setSurroundingNeighborsAfterEdgeFlip(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: W, edge: eW, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
+        setSurroundingNeighborsAfterEdgeFlip(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: X, edge: eX, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
+        setSurroundingNeighborsAfterEdgeFlip(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: Y, edge: eY, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
+        setSurroundingNeighborsAfterEdgeFlip(newNodeA: nodeA, newNodeB: nodeB, newNeighbor: Z, edge: eZ, oldNode: node, oldNeighbor: neighbor, callDepth: callDepth)
 
         // set each new triangle as the other's neighbor
         setNeighborsAcrossFlippedEdge(from: nodeA, to: nodeB, acrossEdge: legalEdge, callDepth: callDepth)
