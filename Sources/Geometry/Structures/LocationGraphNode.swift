@@ -30,6 +30,7 @@ public class LocationGraphNode: NSObject {
         }
 
         let allTriangles = collectLeafNodes(startingNode: self)
+        resetVisitedStates(node: self)
         return Set<Triangle>(allTriangles.map({ $0.triangle }).filter({ !$0.hasGhostPoint() }))
     }
 
@@ -68,6 +69,13 @@ private extension LocationGraphNode {
         }
 
         return result
+    }
+    
+    func resetVisitedStates(node: LocationGraphNode) {
+        node.children.forEach { child in
+            child.visited = false
+            resetVisitedStates(node: child)
+        }
     }
 
 }
