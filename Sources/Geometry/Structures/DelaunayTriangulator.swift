@@ -259,31 +259,27 @@ private extension DelaunayTriangulator {
         return false
     }
 
-    /**
-     - brief:
-     - code:
-              ^                                ^
-             /|\                              /|\
-            / | \                            / | \
-           /  |  \                          /  |  \
-          /   |   \                        /   |   \
-         / W  ^  X \                      / W  ^  X \
-        /   /   \   \                    /   / | \   \
-       /  /eW   eX\  \                  /  /eW | eX\  \
-      / /           \ \                / /     |     \ \
-     //      node     \\              //       |       \\
-     -------------------    ---->     /    A   |  B     \
-     \\    neighbor   //              \\       |       //
-      \ \           / /                \ \     |     / /
-       \  \eY   eZ/  /                  \  \eY | eZ/  /
-        \   \   /   /                    \   \ | /   /
-         \    v    /                      \    v    /
-          \ Y | Z /                        \ Y | Z /
-           \  |  /                          \  |  /
-            \ | /                            \ | /
-             \|/                              \|/
-              v                                v
-     */
+    ///            ^                                ^
+    ///           /|\                              /|\
+    ///          / | \                            / | \
+    ///         /  |  \                          /  |  \
+    ///        /   |   \                        /   |   \
+    ///       / W  ^  X \                      / W  ^  X \
+    ///      /   /   \   \                    /   / | \   \
+    ///     /  /eW   eX\  \                  /  /eW | eX\  \
+    ///    / /           \ \                / /     |     \ \
+    ///   //      node     \\              //       |       \\
+    ///   -------------------    ---->     /    A   |  B     \
+    ///   \\    neighbor   //              \\       |       //
+    ///    \ \           / /                \ \     |     / /
+    ///     \  \eY   eZ/  /                  \  \eY | eZ/  /
+    ///      \   \   /   /                    \   \ | /   /
+    ///       \    v    /                      \    v    /
+    ///        \ Y | Z /                        \ Y | Z /
+    ///         \  |  /                          \  |  /
+    ///          \ | /                            \ | /
+    ///           \|/                              \|/
+    ///            v                                v
     func assignNeighborsAfterEdgeFlip(node: LocationGraphNode, neighbor: LocationGraphNode, nodeA: LocationGraphNode, nodeB: LocationGraphNode, legalEdge: Edge, edge: Edge, callDepth: Int) {
         let depthMarker = String(repeating: "*", count: callDepth + 1)
         // determine new neighbors after the edge flip, and the edges they meet at
