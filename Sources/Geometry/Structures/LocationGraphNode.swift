@@ -24,11 +24,7 @@ public class LocationGraphNode: NSObject {
     /**
      - returns: set of `Triangle`s in the Delaunay triangulation contained within the current node
      */
-    public func getTriangles() -> Set<Triangle>? {
-        if children.count == 0 {
-            return nil
-        }
-
+    public func getTriangles() -> Set<Triangle> {
         let allTriangles = collectLeafNodes(startingNode: self)
         resetVisitedStates(node: self)
         return Set<Triangle>(allTriangles.map({ $0.triangle }).filter({ !$0.hasGhostPoint() }))
