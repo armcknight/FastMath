@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Measure: Int {
+public enum TrigonometricRatio: Int {
     case arc
     case hypotenuse
     case chord
@@ -67,7 +67,7 @@ public enum Measure: Int {
         }
     }
     
-    public static func allMeasures() -> [Measure] {
+    public static func allRatios() -> [TrigonometricRatio] {
         return [
             arc, hypotenuse, chord, sine, sineOpposite, cosineOpposite, cosine, tangent, secant, cosecant, cotangent, versine, coversine, exsecant, excosecant
         ]
