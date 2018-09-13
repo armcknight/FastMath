@@ -24,6 +24,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Bunches of comments and diagrams documenting innards of `DelaunayTriangulator`.
 - Add a function to `Triangle` to output Swift code to reconstruct it, for e.g. unit tests.
 - Add functions for `Set<Triangle>` to return `Set<Vertex>` and a `String` description of a sorted list of brief descriptions of all contained `Triangle`s.
+- Typealiases for `Degree` and `Radian`.
+- `enum`s:
+	- `TrigonometricRatio` defining `cos`, `sin` etc and some helper functions.
+	- `Quadrant` defining the four parts of the Cartesian plane and some query functions.
+- `struct`s: 
+	 - `PolarCoordinate2D`.
+	 - `CartesianCoordinate2D`.
+	 - `Angle` (with an `AngleOrientation` `enum` that needs to be reconciled with `PlanarOrientation`).
+ - A function to compute distance between two `CGPoints`.
+ 
 
 ### Fixed
 
