@@ -196,7 +196,7 @@ private extension DelaunayTriangulator {
             return
         }
 
-        let legalEdge = Edge(x: otherPoint, y: vertex, name: "Flipped(\(edge.name))")
+        let legalEdge = Edge(x: otherPoint, y: vertex, name: "Flipped(\(edge.name), \(node.triangle.name), \(neighbor.triangle.name)")
         log(String(format: "%@ Edge %@ is illegal because the neighboring triangle's opposing point %@ lies inside the circumcircle of the new triangle %@. New legal edge: %@.", depthMarker, String(describing: edge), String(describing: otherPoint), String(describing: node.triangle), String(describing: legalEdge)))
 
         // construct the new triangles replacing the old ones that met on the flipped edge
