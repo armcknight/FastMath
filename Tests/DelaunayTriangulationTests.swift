@@ -99,49 +99,24 @@ class DelaunayTriangulationTests: XCTestCase {
     }
     
     func testTriangulation() {
-        let (points, expected) = caseD()
-        let triangulator = DelaunayTriangulator()
-        let triangulation = triangulator.triangulate(points: points)
-        guard let triangles = triangulation?.getTriangles() else {
-            XCTFail("No triangles returned from triangulation.")
-            return
+        for (points, expected) in [/*caseA, */caseB] {
+            let triangulator = DelaunayTriangulator()
+            let triangulation = triangulator.triangulate(points: points)
+            guard let triangles = triangulation?.getTriangles() else {
+                XCTFail("No triangles returned from triangulation.")
+                return
+            }
+            
+            print(triangles.generatingCode())
+            
+            XCTAssertEqual(expected, triangles)
         }
-        
-        XCTAssertEqual(expected, Set(triangles))
     }
 }
 
 extension DelaunayTriangulationTests {
-    func caseA() -> [Vertex] {
-        return [
-            Vertex(x: 0, y: 0, name: "a"),
-            Vertex(x: 100, y: 0, name: "b"),
-            Vertex(x: 50, y: 50, name: "c"),
-            Vertex(x: 50, y: 75, name: "d"),
-        ]
-    }
-    
-    func caseB() -> [Vertex] {
-        return [
-            Vertex(x: 71.0, y: 516.33332824707, name: "a"),
-            Vertex(x: 314.0, y: 448.0, name: "b"),
-            Vertex(x: 97.6666564941406, y: 214.666656494141, name: "c"),
-            Vertex(x: 304.33332824707, y: 164.0, name: "d"),
-            Vertex(x: 31.6666564941406, y: 73.6666564941406, name: "e"),
-        ]
-    }
-    
-    func caseC() -> [Vertex] {
-        return [
-            Vertex(x: 309.33332824707, y: 522.33332824707, name: "a"),
-            Vertex(x: 121.0, y: 515.666656494141, name: "b"),
-            Vertex(x: 127.0, y: 320.0, name: "c"),
-            Vertex(x: 295.0, y: 281.33332824707, name: "d"),
-            Vertex(x: 43.6666564941406, y: 245.666656494141, name: "e"),
-        ]
-    }
-    
-    func caseD() -> (input: Set<Vertex>, expected: Set<Triangle>) {
+    typealias TestCase = (input: Set<Vertex>, expected: Set<Triangle>)
+    var caseA: TestCase {
         let input = Set([
             Vertex(x: 87.7, y: 166.3, name: "a"),
             Vertex(x: 205.3, y: 167.0, name: "b"),
@@ -160,6 +135,23 @@ extension DelaunayTriangulationTests {
             Triangle(x: Vertex(x:227.3, y:232.3, name: "E:a"), y: Vertex(x:73.0, y:264.3, name: "E:b"), z: Vertex(x:87.7, y:166.3, name: "E:c"), name: "E"),
             Triangle(x: Vertex(x:115.3, y:310.0, name: "F:a"), y: Vertex(x:73.0, y:264.3, name: "F:b"), z: Vertex(x:227.3, y:232.3, name: "F:c"), name: "F"),
             Triangle(x: Vertex(x:115.3, y:310.0, name: "G:a"), y: Vertex(x:227.3, y:232.3, name: "G:b"), z: Vertex(x:211.7, y:307.0, name: "G:c"), name: "G"),
+            ])
+        
+        return (input, expected)
+    }
+    
+    var caseB: TestCase {
+        let input = Set([
+            Vertex(x: 287.5, y: 815.0, name: "a"),
+            Vertex(x: 475.0, y: 394.0, name: "b"),
+            Vertex(x: 743.5, y: 776.5, name: "c"),
+            Vertex(x: 493.0, y: 678.5, name: "d"),
+            ])
+        
+        let expected = Set([
+            Triangle(x:Vertex(x:287.5,y:815.0,name:"x"),y:Vertex(x:493.0,y:678.5,name:"y"),z:Vertex(x:743.5,y:776.5,name:"z"),name:"1"),
+            Triangle(x:Vertex(x:287.5,y:815.0,name:"x"),y:Vertex(x:475.0,y:394.0,name:"y"),z:Vertex(x:493.0,y:678.5,name:"z"),name:"2"),
+            Triangle(x:Vertex(x:743.5,y:776.5,name:"x"),y:Vertex(x:493.0,y:678.5,name:"y"),z:Vertex(x:475.0,y:394.0,name:"z"),name:"3"),
             ])
         
         return (input, expected)
