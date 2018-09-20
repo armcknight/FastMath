@@ -210,7 +210,7 @@ extension Triangle: CustomStringConvertible {
     
     public func generatingCode(id: Int) -> String {
         return """
-        let triangle\(id) = Triangle(x:Vertex(x:\(a.a.x),y:\(a.a.y),name:"x"),y:Vertex(x:\(a.b.x),y:\(a.b.y),name:"y"),z:Vertex(x:\(b.b.x),y:\(b.b.y),name:"z"),name:"id")
+        let triangle\(id) = Triangle(x:Vertex(x:\(a.a.x),y:\(a.a.y),name:"x"),y:Vertex(x:\(a.b.x),y:\(a.b.y),name:"y"),z:Vertex(x:\(b.b.x),y:\(b.b.y),name:"z"),name:"\(id)")
         """
     }
 
@@ -231,5 +231,15 @@ extension Set where Element == Triangle {
         return map({ triangle in
             "[" + triangle.points().sortedLexicographically().map { "<\($0.x), \($0.y)>" }.joined(separator: ", ") + "]"
         }).sorted().joined(separator: "\n")
+    }
+    
+    func generatingCode() -> String {
+        var i = 0
+        var string = String()
+        forEach {
+            string.append("\n\($0.generatingCode(id: i))")
+            i += 1
+        }
+        return string
     }
 }
