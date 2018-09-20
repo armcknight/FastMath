@@ -57,7 +57,7 @@ class DelaunayTriangulationTests: XCTestCase {
             .getTriangles()
         
         
-        XCTAssert(expected.elementsEqual(computed), "\nexpected\n\(expected)\nbut got\n\(computed)")
+        XCTAssert(expected.symmetricDifference(computed).count == 0, "\nexpected\n\(expected)\nbut got\n\(computed)")
     }
     
     func testTriangulator() {
