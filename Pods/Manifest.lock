@@ -1,6 +1,6 @@
 PODS:
-  - FastMath (1.0.0)
-  - FastMath/Tests (1.0.0)
+  - FastMath (2.1.0)
+  - FastMath/Tests (2.1.0)
 
 DEPENDENCIES:
   - FastMath (from `.`)
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  FastMath: 9fb236a4826c1c81e1778710231aeadf9bc2e68c
+  FastMath: 4a027b860bce7c9c24b3c006132334f9ecbe6a8e
 
 PODFILE CHECKSUM: 64e764c91bdef09f2edbb8639d1b38e3d5b11610
 
