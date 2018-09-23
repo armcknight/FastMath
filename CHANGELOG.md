@@ -8,6 +8,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ---
 
+## [2.1.0] 2018-09-23
+
+### Added
+
+- Add function to `LocationGraphNode` to assign a "color" to each leaf node (in the form of an `Int` value) such that the resulting triangulation is 4-colored: no two triangles adjacent on a common edge have the same color.
+- New unit tests for delaunay triangulation.
+
+### Fixed
+
+- Various debugging improvements for Delaunay triangulation, like how edges and triangles created due to edge flips are named, and test Swift generation for Triangles.
+
 ## [2.0.0] 2018-09-12
 
 ### Changed
