@@ -52,10 +52,10 @@ class DelaunayTriangulationTests: XCTestCase {
         parent.children = [tri1, tri2]
         let expected = parent.getTriangles()
         
-        let computed = DelaunayTriangulator()
-            .triangulate(points: points)!
-            .getTriangles()
-        
+        guard let computed = DelaunayTriangulator(points: points).triangulation?.getTriangles() else {
+            XCTFail("No triangles returned from triangulation.")
+            return
+        }
         
         XCTAssert(expected.symmetricDifference(computed).count == 0, "\nexpected\n\(expected)\nbut got\n\(computed)")
     }
@@ -91,20 +91,21 @@ class DelaunayTriangulationTests: XCTestCase {
         
         let points = expected.points()
         
-        let triangulator = DelaunayTriangulator()
-        let triangulation = triangulator.triangulate(points: points)!
-        let computed = triangulation.getTriangles()
+        let triangulator = DelaunayTriangulator(points: points)
+        guard let computed = triangulator.triangulation?.getTriangles() else {
+            XCTFail("No triangles returned from triangulation.")
+            return
+        }
         print(computed.symmetricDifference(expected).briefDescription())
         XCTAssert(computed.symmetricDifference(expected).count == 0, "expected\n\(expected.briefDescription())\nbut got\n\(computed.briefDescription())")
     }
     
     func testTriangulation() {
         for (points, expected) in [/*caseA, */caseB] {
-            let triangulator = DelaunayTriangulator()
-            let triangulation = triangulator.triangulate(points: points)
-            guard let triangles = triangulation?.getTriangles() else {
-                XCTFail("No triangles returned from triangulation.")
-                return
+        let triangulator = DelaunayTriangulator(points: points)
+        guard let triangles = triangulator.triangulation?.getTriangles() else {
+            XCTFail("No triangles returned from triangulation.")
+            return
             }
             
             print(triangles.generatingCode())
