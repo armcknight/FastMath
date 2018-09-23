@@ -16,8 +16,6 @@ public struct FastMath {
 
 internal func log(_ message: String) {
     #if DEBUG
-        if FastMath.logBlock != nil {
-            FastMath.logBlock!(message)
-        }
+        FastMath.logBlock?(message)
     #endif
 }
