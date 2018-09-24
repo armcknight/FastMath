@@ -2,10 +2,25 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:FastMath.xcodeproj">
+      location = "group:CHANGELOG.md">
    </FileRef>
    <FileRef
-      location = "group:">
+      location = "group:FastMath.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:Gemfile">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:Rakefile">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:FastMath.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
