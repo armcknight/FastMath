@@ -7,3 +7,11 @@
 [![Cocoapod](http://img.shields.io/cocoapods/v/FastMath.svg?style=flat)](http://cocoapods.org/pods/FastMath)
 
 A library for numerical computing in Swift.
+
+# Contribute
+
+Issues and pull requests are welcome! 
+
+If this project helped you, please consider <a href="https://www.paypal.me/armcknight">leaving a tip</a> 🤗
+
+Do you need help with a project? [I'm currently available for hire or contract.](http://tworingsoft.com/contracts).
