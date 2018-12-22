@@ -65,3 +65,102 @@ func standardDeviation(n: Int, p: Int, q: Int) -> Double {
 func mean(n: Int, p: Int, q: Int) -> Double {
     return Double(n) * ( Double(p) / Double(p + q) )
 }
+
+public extension Collection where Iterator.Element == Float {
+    func mean() -> Float {
+        return sum() / Float(count)
+    }
+    
+    func variance() -> Float {
+        let mean = self.mean()
+        return map({ (next) -> Float in
+            return pow(next - mean, 2)
+        }).mean()
+    }
+    
+    func standardDeviation() -> Float {
+        return sqrt(variance())
+    }
+    
+    func zScores() -> [Float] {
+        let mean = self.mean()
+        let standardDeviation = self.standardDeviation()
+        return map({ (next) -> Float in
+            return (next - mean) / standardDeviation
+        })
+    }
+    
+    func histogram(buckets: [Range<Float>]) -> [Int] {
+        return buckets.map({ (bucket) -> Int in
+            return filter({ (value) -> Bool in
+                return bucket.contains(value)
+            }).count
+        })
+    }
+}
+
+public extension Collection where Iterator.Element == Double {
+    func mean() -> Double {
+        return sum() / Double(count)
+    }
+    
+    func variance() -> Double {
+        let mean = self.mean()
+        return map({ (next) -> Double in
+            return pow(next - mean, 2)
+        }).mean()
+    }
+    
+    func standardDeviation() -> Double {
+        return sqrt(variance())
+    }
+    
+    func zScores() -> [Double] {
+        let mean = self.mean()
+        let standardDeviation = self.standardDeviation()
+        return map({ (next) -> Double in
+            return (next - mean) / standardDeviation
+        })
+    }
+    
+    func histogram(buckets: [Range<Double>]) -> [Int] {
+        return buckets.map({ (bucket) -> Int in
+            return filter({ (value) -> Bool in
+                return bucket.contains(value)
+            }).count
+        })
+    }
+}
+
+public extension Collection where Iterator.Element == Int {
+    func mean() -> Double {
+        return Double(sum()) / Double(count)
+    }
+    
+    func variance() -> Double {
+        let mean = self.mean()
+        return map({ (next) -> Double in
+            return pow(Double(next) - mean, 2)
+        }).mean()
+    }
+    
+    func standardDeviation() -> Double {
+        return sqrt(variance())
+    }
+    
+    func zScores() -> [Double] {
+        let mean = self.mean()
+        let standardDeviation = self.standardDeviation()
+        return map({ (next) -> Double in
+            return (Double(next) - mean) / standardDeviation
+        })
+    }
+    
+    func histogram(buckets: [Range<Int>]) -> [Int] {
+        return buckets.map({ (bucket) -> Int in
+            return filter({ (value) -> Bool in
+                return bucket.contains(value)
+            }).count
+        })
+    }
+}
