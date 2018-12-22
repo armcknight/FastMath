@@ -24,7 +24,7 @@ task :test do
 
     scheme = 'FastMath-Unit-Tests'
     Open3.pipeline(
-       ["xcrun xcodebuild -workspace FastMath.xcworkspace -scheme #{scheme} -destination 'platform=iOS Simulator,name=iPhone SE,OS=11.4' test"],
+       ["xcrun xcodebuild -workspace FastMath.xcworkspace -scheme #{scheme} -destination 'platform=iOS Simulator,name=iPhone SE,OS=12.1' test"],
        ["tee #{scheme}.log"],
        ['#{ruby_environment_prefixes} xcpretty -t']
    )
