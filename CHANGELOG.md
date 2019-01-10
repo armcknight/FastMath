@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Added
 
-- Functions that given collections of integer or floating point values calculate mean, variance, standard deviation and histogram, as well as a z-score for each value.
+- Functions that given collections of integer or floating point values calculate mean, variance, standard deviation and histogram, a z-score for each value, and a convenience function to return the histogram of a data set's z-scores as a normalized distribution.
 
 ---
 
