@@ -84,14 +84,17 @@ public extension Collection where Iterator.Element == Float {
     }
     
     func zScores() -> [Float] {
-        let mean = self.mean()
         let standardDeviation = self.standardDeviation()
+        guard standardDeviation != 0 else { return Array(repeating: 0, count: count) }
+        
+        let mean = self.mean()
         return map({ (next) -> Float in
             return (next - mean) / standardDeviation
         })
     }
     
     func histogram(buckets: [Range<Float>]) -> HistogramCount {
+        guard count > 0 else { return [:] }
         return buckets.reduce(into: HistogramCount(), { (result, bucket) in
             result[String(describing: bucket)] = filter({ (value) -> Bool in
                 return bucket.contains(value)
@@ -100,6 +103,7 @@ public extension Collection where Iterator.Element == Float {
     }
     
     func normalDistribution() -> HistogramCount {
+        guard count > 0 else { return [:] }
         let zScores = self.zScores()
         let maxZ = ceil(zScores.max()!)
         let minZ = floor(zScores.min()!)
@@ -129,14 +133,17 @@ public extension Collection where Iterator.Element == Double {
     }
     
     func zScores() -> [Double] {
-        let mean = self.mean()
         let standardDeviation = self.standardDeviation()
+        guard standardDeviation != 0 else { return Array(repeating: 0, count: count) }
+        
+        let mean = self.mean()
         return map({ (next) -> Double in
             return (next - mean) / standardDeviation
         })
     }
     
     func histogram(buckets: [Range<Double>]) -> HistogramCount {
+        guard count > 0 else { return [:] }
         return buckets.reduce(into: HistogramCount(), { (result, bucket) in
             result[String(describing: bucket)] = filter({ (value) -> Bool in
                 return bucket.contains(value)
@@ -145,6 +152,7 @@ public extension Collection where Iterator.Element == Double {
     }
     
     func normalDistribution() -> HistogramCount {
+        guard count > 0 else { return [:] }
         let zScores = self.zScores()
         let maxZ = ceil(zScores.max()!)
         let minZ = floor(zScores.min()!)
@@ -176,14 +184,17 @@ public extension Collection where Iterator.Element == Int {
     }
     
     func zScores() -> [Double] {
-        let mean = self.mean()
         let standardDeviation = self.standardDeviation()
+        guard standardDeviation != 0 else { return Array(repeating: 0, count: count) }
+
+        let mean = self.mean()
         return map({ (next) -> Double in
             return (Double(next) - mean) / standardDeviation
         })
     }
     
     func histogram(buckets: [Range<Int>]) -> HistogramCount {
+        guard count > 0 else { return [:] }
         return buckets.reduce(into: HistogramCount(), { (result, bucket) in
             result[String(describing: bucket)] = filter({ (value) -> Bool in
                 return bucket.contains(value)
@@ -192,6 +203,7 @@ public extension Collection where Iterator.Element == Int {
     }
     
     func normalDistribution() -> HistogramCount {
+        guard count > 0 else { return [:] }
         let zScores = self.zScores()
         let maxZ = ceil(zScores.max()!)
         let minZ = floor(zScores.min()!)
