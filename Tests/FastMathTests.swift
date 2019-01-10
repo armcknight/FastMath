@@ -34,7 +34,7 @@ class FastMathTests: XCTestCase {
         ]
 
         let computed = points.convexHull()
-        print(computed)
+        print(String(describing: computed))
     }
 
     func testOrientation() {
