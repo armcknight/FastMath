@@ -6,11 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+---
+
+## [2.2.0] 2019-01-09
+
 ### Added
 
 - Functions that given collections of integer or floating point values calculate mean, variance, standard deviation and histogram, a z-score for each value, and a convenience function to return the histogram of a data set's z-scores as a normalized distribution.
-
----
 
 ## [2.1.0] 2018-09-23
 
