@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "FastMath"
-  s.version      = "2.1.0"
+  s.version      = "2.2.0"
   s.summary      = "A math library written in Swift."
   s.description  = <<-DESC
                     FastMath is a framework for performing numerical computation in Swift.
