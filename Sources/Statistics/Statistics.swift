@@ -96,7 +96,7 @@ public extension Collection where Iterator.Element == Float {
     func histogram(buckets: [Range<Float>]) -> HistogramCount {
         guard count > 0 else { return [:] }
         return buckets.reduce(into: HistogramCount(), { (result, bucket) in
-            result[String(describing: bucket)] = filter({ (value) -> Bool in
+            result[String(describing: bucket.upperBound)] = filter({ (value) -> Bool in
                 return bucket.contains(value)
             }).count
         })
@@ -145,7 +145,7 @@ public extension Collection where Iterator.Element == Double {
     func histogram(buckets: [Range<Double>]) -> HistogramCount {
         guard count > 0 else { return [:] }
         return buckets.reduce(into: HistogramCount(), { (result, bucket) in
-            result[String(describing: bucket)] = filter({ (value) -> Bool in
+            result[String(describing: bucket.upperBound)] = filter({ (value) -> Bool in
                 return bucket.contains(value)
             }).count
         })
@@ -196,7 +196,7 @@ public extension Collection where Iterator.Element == Int {
     func histogram(buckets: [Range<Int>]) -> HistogramCount {
         guard count > 0 else { return [:] }
         return buckets.reduce(into: HistogramCount(), { (result, bucket) in
-            result[String(describing: bucket)] = filter({ (value) -> Bool in
+            result[String(describing: bucket.upperBound)] = filter({ (value) -> Bool in
                 return bucket.contains(value)
             }).count
         })
