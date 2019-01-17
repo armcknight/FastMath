@@ -166,10 +166,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FastMathTestHarness/Pods-FastMathTestHarness-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FastMath/FastMath.framework",
+				"${BUILT_PRODUCTS_DIR}/Pippin/Pippin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastMath.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pippin.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

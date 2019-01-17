@@ -6,4 +6,5 @@ workspace 'FastMath.xcworkspace'
 
 target 'FastMathTestHarness' do
   pod 'FastMath', :path => '.', :testspecs => ['Tests']
+  pod 'Pippin/Extensions', :path => '../Pippin'
 end

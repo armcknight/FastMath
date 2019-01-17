@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ---
 
+## [2.2.1] 2019-01-16
+
+### Fixed
+
+- Histograms only key by the upper bound of each bucket, whereas previously it used the full string description (e.g. `10` versus `1..<10`).
+
 ## [2.2.0] 2019-01-09
 
 ### Added
