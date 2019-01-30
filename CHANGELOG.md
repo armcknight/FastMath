@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ---
 
+## [2.3.0] 2019-01-29
+
+### Added
+
+- Support for macOS starting with 10.12.
+
 ## [2.2.1] 2019-01-18
 
 ### Fixed
