@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author             = { "Andrew McKnight" => "andrew@tworingsoft.com" }
   s.ios.deployment_target = '9.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.12'
   s.source       = { :git => "https://github.com/tworingsoft/fastmath.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/**/*.{c,h,swift}"
   s.swift_version = '4'

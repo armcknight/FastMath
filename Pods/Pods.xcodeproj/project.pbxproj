@@ -1497,7 +1497,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3B9E5A479C95E755826621E818BCE6B0 /* Release */ = {
+		000FED690E4ACE8484416651FE210B57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90B361BD72264933B884A200FAC47C60 /* FastMath-macOS.unit.xcconfig */;
 			buildSettings = {
@@ -1508,7 +1508,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "FastMath-macOS-Unit-Tests";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -1516,6 +1516,44 @@
 				SWIFT_VERSION = 4;
 			};
 			name = Release;
+		};
+		371906C5C449EF01BECB545A1E17B9CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C16CD669E517CA29C665971A910D2512 /* FastMath-macOS.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
+				PRODUCT_MODULE_NAME = FastMath;
+				PRODUCT_NAME = FastMath;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		5053A7D6E4540B6262FC13FCA7F5D9EC /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1587,44 +1625,6 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		633D3C561FC31A54CC33EBD6423957AE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C16CD669E517CA29C665971A910D2512 /* FastMath-macOS.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
-				PRODUCT_MODULE_NAME = FastMath;
-				PRODUCT_NAME = FastMath;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1849,6 +1849,30 @@
 			};
 			name = Release;
 		};
+		98B6EFA3173E870936CC31CAD22D2416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90B361BD72264933B884A200FAC47C60 /* FastMath-macOS.unit.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lswiftSwiftOnoneSupport",
+				);
+				PRODUCT_NAME = "FastMath-macOS-Unit-Tests";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4;
+			};
+			name = Debug;
+		};
 		9A3B56F270C62191B6F945F16AFA2986 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1946,30 +1970,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B9172935A45360999B4A9415C0B1D663 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90B361BD72264933B884A200FAC47C60 /* FastMath-macOS.unit.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lswiftSwiftOnoneSupport",
-				);
-				PRODUCT_NAME = "FastMath-macOS-Unit-Tests";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4;
 			};
 			name = Debug;
 		};
@@ -2132,7 +2132,7 @@
 			};
 			name = Release;
 		};
-		F48993046A22017F8907EF9747225147 /* Debug */ = {
+		FCE3A22450600F680D8E81C461E70CEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C16CD669E517CA29C665971A910D2512 /* FastMath-macOS.xcconfig */;
 			buildSettings = {
@@ -2156,19 +2156,19 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
 				PRODUCT_MODULE_NAME = FastMath;
 				PRODUCT_NAME = FastMath;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2194,8 +2194,8 @@
 		6C8DB7A5E50FAFF0C3DA87C3B6130FBB /* Build configuration list for PBXNativeTarget "FastMath-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F48993046A22017F8907EF9747225147 /* Debug */,
-				633D3C561FC31A54CC33EBD6423957AE /* Release */,
+				371906C5C449EF01BECB545A1E17B9CF /* Debug */,
+				FCE3A22450600F680D8E81C461E70CEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2212,8 +2212,8 @@
 		9421117B98510E2DC3C1377E5E16E224 /* Build configuration list for PBXNativeTarget "FastMath-macOS-Unit-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B9172935A45360999B4A9415C0B1D663 /* Debug */,
-				3B9E5A479C95E755826621E818BCE6B0 /* Release */,
+				98B6EFA3173E870936CC31CAD22D2416 /* Debug */,
+				000FED690E4ACE8484416651FE210B57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
