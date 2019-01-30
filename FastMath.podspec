@@ -8,12 +8,13 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/tworingsoft/fastmath"
   s.license      = "MIT"
   s.author             = { "Andrew McKnight" => "andrew@tworingsoft.com" }
-  s.platform = :ios, '9.0'
+  s.ios.deployment_target = '9.0'
+  s.osx.deployment_target = '10.10'
   s.source       = { :git => "https://github.com/tworingsoft/fastmath.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/**/*.{c,h,swift}"
   s.swift_version = '4'
   s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'Tests/**/*.swift'
   end
-  s.dependency 'Pippin/Extensions', '~> 12.1'
+  s.dependency 'Pippin/Extensions', '>= 12.1'
 end

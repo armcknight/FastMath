@@ -1,25 +1,27 @@
 PODS:
-  - FastMath (2.2.0):
-    - Pippin/Extensions
-  - FastMath/Tests (2.2.0):
-    - Pippin/Extensions
-  - Pippin/Extensions (12.1.0)
+  - FastMath (2.2.1):
+    - Pippin/Extensions (>= 12.1)
+  - FastMath/Tests (2.2.1):
+    - Pippin/Extensions (>= 12.1)
+  - Pippin/Extensions (13.0.0)
 
 DEPENDENCIES:
   - FastMath (from `.`)
   - FastMath/Tests (from `.`)
-  - Pippin/Extensions (from `../Pippin`)
+  - Pippin/Extensions
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Pippin
 
 EXTERNAL SOURCES:
   FastMath:
     :path: "."
-  Pippin:
-    :path: "../Pippin"
 
 SPEC CHECKSUMS:
-  FastMath: 331d6ee461042ceb1e9af046fbe605c57399cf4d
-  Pippin: 53bc4ea9a195b47fe49db1d5e44c4b584645191e
+  FastMath: 1afd73e961877a9266d5f1992270cabfe484daf7
+  Pippin: 197fd2b93364a4f7aaedf793e6aeec82c4c436a6
 
-PODFILE CHECKSUM: 166f15a3417535b9d4103048dd50278202865145
+PODFILE CHECKSUM: efab0e757754c6c332f42b2b443de8f0ad9ead80
 
 COCOAPODS: 1.5.3

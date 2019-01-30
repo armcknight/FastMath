@@ -1,0 +1,6 @@
+framework module Pods_FastMathTestHarnessPods_FastMathTestHarness_macOS {
+  umbrella header "Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_FastMathTestHarnessPods_FastMathTestHarness : NSObject
+@end
+@implementation PodsDummy_Pods_FastMathTestHarnessPods_FastMathTestHarness
+@end
