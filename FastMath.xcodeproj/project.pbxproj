@@ -234,7 +234,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FastMath-macOS/FastMath.framework",
 				"${BUILT_PRODUCTS_DIR}/Pippin-macOS/Pippin.framework",
 			);
@@ -245,7 +245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7CFBC17F1B25CC7D023C1586 /* [CP] Check Pods Manifest.lock */ = {
@@ -272,7 +272,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FastMath-iOS/FastMath.framework",
 				"${BUILT_PRODUCTS_DIR}/Pippin-iOS/Pippin.framework",
 			);
@@ -283,7 +283,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A807B143556B1B3C39CBBEBE /* [CP] Check Pods Manifest.lock */ = {

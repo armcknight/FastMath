@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E050FA82DAF074798660CDEF5DE93CBE"
+               BlueprintIdentifier = "5F2E7A0D02FF6C693FDEB34C2DB829FF"
                BlueprintName = "FastMath-iOS-Unit-Tests"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "FastMath-iOS-Unit-Tests.xctest">
@@ -34,7 +34,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E050FA82DAF074798660CDEF5DE93CBE"
+               BlueprintIdentifier = "5F2E7A0D02FF6C693FDEB34C2DB829FF"
                BlueprintName = "FastMath-iOS-Unit-Tests"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "FastMath-iOS-Unit-Tests.xctest">

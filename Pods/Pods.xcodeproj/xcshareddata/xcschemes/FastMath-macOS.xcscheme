@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7E19F5FDED9B27E382CD3BD506F164F7"
+               BlueprintIdentifier = "DF3705C614A8FFEAD66DCB31AF9DF2E0"
                BuildableName = "FastMath.framework"
                BlueprintName = "FastMath-macOS"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2C3B910A1D4E7EA2525F2E3F79BC858"
+               BlueprintIdentifier = "A5BE6993F85E4CFD0F196CBC2507BBEF"
                BuildableName = "FastMath-macOS-Unit-Tests.xctest"
                BlueprintName = "FastMath-macOS-Unit-Tests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -55,7 +55,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7E19F5FDED9B27E382CD3BD506F164F7"
+            BlueprintIdentifier = "DF3705C614A8FFEAD66DCB31AF9DF2E0"
             BuildableName = "FastMath.framework"
             BlueprintName = "FastMath-macOS"
             ReferencedContainer = "container:Pods.xcodeproj">
