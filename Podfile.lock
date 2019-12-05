@@ -1,7 +1,7 @@
 PODS:
-  - FastMath (2.3.0):
+  - FastMath (2.4.0):
     - Pippin/Extensions (>= 12.1)
-  - FastMath/Tests (2.3.0):
+  - FastMath/Tests (2.4.0):
     - Pippin/Extensions (>= 12.1)
   - Pippin/Extensions (13.0.0)
 
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  FastMath: e92b32f259a57d192b6dcb42855644493edb25c7
+  FastMath: 8ea1441c959d828c575e5599f3a23cc923353afb
   Pippin: 197fd2b93364a4f7aaedf793e6aeec82c4c436a6
 
 PODFILE CHECKSUM: efab0e757754c6c332f42b2b443de8f0ad9ead80
