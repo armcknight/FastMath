@@ -191,13 +191,11 @@ extension Triangle {
 
 extension Triangle: Hashable {
 
-    public var hashValue: Int {
-        let string = description
-            .replacingOccurrences(of: "“\(name)”", with: "")
-            .replacingOccurrences(of: "“\(a.a.name)”", with: "")
-            .replacingOccurrences(of: "“\(a.b.name)”", with: "")
-            .replacingOccurrences(of: "“\(b.b.name)”", with: "")
-        return string.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(a.a.name)
+        hasher.combine(a.b.name)
+        hasher.combine(b.b.name)
     }
 
 }

@@ -56,8 +56,10 @@ public class Edge {
 
 extension Edge: Hashable {
 
-    public var hashValue: Int {
-        return String(describing: self).replacingOccurrences(of: name, with: "").hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(a)
+        hasher.combine(b)
     }
 
 }

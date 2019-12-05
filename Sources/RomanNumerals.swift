@@ -39,13 +39,13 @@ extension Int {
             for index in indices {
                 let value = place * index
                 if n >= value {
-                    characters.append(specialCases[places.index(of: place)!][indices.index(of: index)!])
+                    characters.append(specialCases[places.firstIndex(of: place)!][indices.firstIndex(of: index)!])
                     n -= value
                     break
                 }
             }
             for _ in 0 ..< n/place {
-                characters.append(placeNumerals[places.index(of: place)!])
+                characters.append(placeNumerals[places.firstIndex(of: place)!])
             }
             n %= place
         }

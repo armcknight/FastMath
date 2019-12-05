@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.12'
   s.source       = { :git => "https://github.com/tworingsoft/fastmath.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/**/*.{c,h,swift}"
-  s.swift_version = '4'
+  s.swift_version = '5'
   s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'Tests/**/*.swift'
   end

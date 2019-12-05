@@ -27,10 +27,10 @@ extension Set where Element == Vertex {
 
         let minmin = 0
         let minXPoints = Set(sortedPoints.filter { $0.x == sortedPoints.first!.x })
-        guard let minmax = sortedPoints.index(of: minXPoints.sortedByY().last!) else { return nil }
+        guard let minmax = sortedPoints.firstIndex(of: minXPoints.sortedByY().last!) else { return nil }
         let maxXs = sortedPoints.filter { $0.x == sortedPoints.last!.x }
-        guard let maxmin = sortedPoints.index(of: maxXs.first!) else { return nil }
-        guard let maxmax = sortedPoints.index(of: maxXs.last!) else { return nil }
+        guard let maxmin = sortedPoints.firstIndex(of: maxXs.first!) else { return nil }
+        guard let maxmax = sortedPoints.firstIndex(of: maxXs.last!) else { return nil }
 
         var hullPoints = [Vertex]()
         hullPoints.append(sortedPoints[minmin])

@@ -85,7 +85,7 @@ public extension LocationGraphNode {
             siblings.append(contentsOf: parent.children)
         }
         
-        if let originalTriangleIndex = siblings.index(of: triangle) {
+        if let originalTriangleIndex = siblings.firstIndex(of: triangle) {
             siblings.remove(at: originalTriangleIndex)
         }
         

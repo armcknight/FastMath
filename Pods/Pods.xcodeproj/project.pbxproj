@@ -1544,7 +1544,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0BC9DBD2D55C257DD66610D60EB68351 /* Debug */ = {
+		0D45A886E0894090680DE56C7384E62C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 459798C01137273AD132D2E178E50386 /* FastMath-macOS.unit-tests.xcconfig */;
 			buildSettings = {
@@ -1557,85 +1557,10 @@
 				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lswiftSwiftOnoneSupport",
-				);
 				PRODUCT_NAME = "FastMath-macOS-Unit-Tests";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
-			};
-			name = Debug;
-		};
-		13191A8DE2E7448A93A12EFD4158392E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82E01CB02626EEA942185853E1BF1DF8 /* FastMath-iOS.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-iOS/FastMath-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS.modulemap";
-				PRODUCT_MODULE_NAME = FastMath;
-				PRODUCT_NAME = FastMath;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		184F5F8EFC3CB805D5DFC6DC097908A4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82E01CB02626EEA942185853E1BF1DF8 /* FastMath-iOS.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-iOS/FastMath-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS.modulemap";
-				PRODUCT_MODULE_NAME = FastMath;
-				PRODUCT_NAME = FastMath;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				SWIFT_VERSION = 5;
 			};
 			name = Release;
 		};
@@ -1739,6 +1664,44 @@
 			};
 			name = Release;
 		};
+		2F492D208C3E56BE829DF8C86866753B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F4FFBCA1FD136ECE87252961502505B /* FastMath-macOS.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
+				PRODUCT_MODULE_NAME = FastMath;
+				PRODUCT_NAME = FastMath;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		36A939040E217D1827CE87D3F74945D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD6CF4A4A3EF09474F6FE621D988F26A /* Pippin-macOS.xcconfig */;
@@ -1774,6 +1737,30 @@
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4D93E95A43BA9E7EBEBE989DC02471FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 550278BB4462B8AE73B6180C843BFC75 /* FastMath-iOS.unit-tests.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-iOS/FastMath-iOS-Unit-Tests-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS-Unit-Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lswiftSwiftOnoneSupport",
+				);
+				PRODUCT_NAME = "FastMath-iOS-Unit-Tests";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
 			};
 			name = Debug;
 		};
@@ -1814,26 +1801,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		59225314A1D5D67B9473D6725C434794 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 459798C01137273AD132D2E178E50386 /* FastMath-macOS.unit-tests.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_NAME = "FastMath-macOS-Unit-Tests";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
-			};
-			name = Release;
 		};
 		7AA99F5593F76A3EC7125B8DC1C31C1D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1976,82 +1943,6 @@
 			};
 			name = Release;
 		};
-		908D473A53E530A7EDC9EC06F35FCFB1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F4FFBCA1FD136ECE87252961502505B /* FastMath-macOS.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
-				PRODUCT_MODULE_NAME = FastMath;
-				PRODUCT_NAME = FastMath;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9B85183ACD99E9E0FB74B0A9EBEBD90A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F4FFBCA1FD136ECE87252961502505B /* FastMath-macOS.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
-				PRODUCT_MODULE_NAME = FastMath;
-				PRODUCT_NAME = FastMath;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		A61B4A3A92E010355A1394F93F2FDDBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD6CF4A4A3EF09474F6FE621D988F26A /* Pippin-macOS.xcconfig */;
@@ -2085,6 +1976,44 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B1E55001450FC796A2F728FEBC3E73A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F4FFBCA1FD136ECE87252961502505B /* FastMath-macOS.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS.modulemap";
+				PRODUCT_MODULE_NAME = FastMath;
+				PRODUCT_NAME = FastMath;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2130,7 +2059,67 @@
 			};
 			name = Debug;
 		};
-		E7A0AD0589C649E1820C89BAC214BADC /* Release */ = {
+		B350BB87F61C71A5B8633558D26A84F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E01CB02626EEA942185853E1BF1DF8 /* FastMath-iOS.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-iOS/FastMath-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS.modulemap";
+				PRODUCT_MODULE_NAME = FastMath;
+				PRODUCT_NAME = FastMath;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B5FD83901AF8EC49C51212F17DF4F0D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 459798C01137273AD132D2E178E50386 /* FastMath-macOS.unit-tests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-macOS/FastMath-macOS-Unit-Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lswiftSwiftOnoneSupport",
+				);
+				PRODUCT_NAME = "FastMath-macOS-Unit-Tests";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+			};
+			name = Debug;
+		};
+		F7AA1ECBE777F8F5928132AD1E0F1B11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 550278BB4462B8AE73B6180C843BFC75 /* FastMath-iOS.unit-tests.xcconfig */;
 			buildSettings = {
@@ -2146,7 +2135,7 @@
 				PRODUCT_NAME = "FastMath-iOS-Unit-Tests";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
+				SWIFT_VERSION = 5;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2186,27 +2175,38 @@
 			};
 			name = Debug;
 		};
-		FD5B421E5E742EA945AFF2FC2756839F /* Debug */ = {
+		FFAB79576974F244C7CF26F6814654A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 550278BB4462B8AE73B6180C843BFC75 /* FastMath-iOS.unit-tests.xcconfig */;
+			baseConfigurationReference = 82E01CB02626EEA942185853E1BF1DF8 /* FastMath-iOS.xcconfig */;
 			buildSettings = {
-				CODE_SIGNING_ALLOWED = YES;
-				CODE_SIGNING_REQUIRED = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FastMath-iOS/FastMath-iOS-Unit-Tests-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS-Unit-Tests-Info.plist";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FastMath-iOS/FastMath-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = (
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"-lswiftSwiftOnoneSupport",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				PRODUCT_NAME = "FastMath-iOS-Unit-Tests";
+				MODULEMAP_FILE = "Target Support Files/FastMath-iOS/FastMath-iOS.modulemap";
+				PRODUCT_MODULE_NAME = FastMath;
+				PRODUCT_NAME = FastMath;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4;
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -2243,8 +2243,8 @@
 		52493BF1BECF06851225692FF4CC3058 /* Build configuration list for PBXNativeTarget "FastMath-iOS-Unit-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FD5B421E5E742EA945AFF2FC2756839F /* Debug */,
-				E7A0AD0589C649E1820C89BAC214BADC /* Release */,
+				4D93E95A43BA9E7EBEBE989DC02471FC /* Debug */,
+				F7AA1ECBE777F8F5928132AD1E0F1B11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2261,8 +2261,8 @@
 		8C80AA1EC0B9C7AE06D107769B1F69DD /* Build configuration list for PBXNativeTarget "FastMath-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				908D473A53E530A7EDC9EC06F35FCFB1 /* Debug */,
-				9B85183ACD99E9E0FB74B0A9EBEBD90A /* Release */,
+				2F492D208C3E56BE829DF8C86866753B /* Debug */,
+				B1E55001450FC796A2F728FEBC3E73A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2279,8 +2279,8 @@
 		B562AE23A9C7CF5CF88EA0B76634D2F4 /* Build configuration list for PBXNativeTarget "FastMath-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13191A8DE2E7448A93A12EFD4158392E /* Debug */,
-				184F5F8EFC3CB805D5DFC6DC097908A4 /* Release */,
+				FFAB79576974F244C7CF26F6814654A8 /* Debug */,
+				B350BB87F61C71A5B8633558D26A84F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2288,8 +2288,8 @@
 		C83C091E60013CCE2675A554C41967B5 /* Build configuration list for PBXNativeTarget "FastMath-macOS-Unit-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BC9DBD2D55C257DD66610D60EB68351 /* Debug */,
-				59225314A1D5D67B9473D6725C434794 /* Release */,
+				B5FD83901AF8EC49C51212F17DF4F0D0 /* Debug */,
+				0D45A886E0894090680DE56C7384E62C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

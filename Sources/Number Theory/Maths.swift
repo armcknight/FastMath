@@ -79,7 +79,7 @@ func allPermutations<T>(_ items: [T]) -> [[T]] where T: Comparable {
     for object in items {
         var array = [T]()
         array.append(contentsOf: items)
-        array.remove(at: array.index(where: { param -> Bool in
+        array.remove(at: array.firstIndex(where: { param -> Bool in
             return param == object
         })!)
         for permutation in allPermutations(array) {

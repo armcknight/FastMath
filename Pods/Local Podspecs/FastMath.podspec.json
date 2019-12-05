@@ -17,7 +17,7 @@
     "tag": "2.3.0"
   },
   "source_files": "Sources/**/*.{c,h,swift}",
-  "swift_version": "4",
+  "swift_version": "5",
   "dependencies": {
     "Pippin/Extensions": [
       ">= 12.1"

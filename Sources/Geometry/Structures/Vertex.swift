@@ -55,8 +55,10 @@ public class Vertex {
 
 extension Vertex: Hashable {
 
-    public var hashValue: Int {
-        return String(format: "Vertex: [%f %f]", x, y).hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(x)
+        hasher.combine(y)
     }
 
 }
