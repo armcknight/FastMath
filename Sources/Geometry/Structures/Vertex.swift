@@ -56,7 +56,6 @@ public class Vertex {
 extension Vertex: Hashable {
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
         hasher.combine(x)
         hasher.combine(y)
     }

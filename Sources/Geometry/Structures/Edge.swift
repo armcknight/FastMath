@@ -45,7 +45,7 @@ public class Edge {
     }
     
     func isGhostEdge() -> Bool {
-        return endpoints().symmetricDifference(ghosts).count == 0
+        return endpoints() == ghosts
     }
 
     func endpoints() -> Set<Vertex> {
@@ -57,7 +57,6 @@ public class Edge {
 extension Edge: Hashable {
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
         hasher.combine(a)
         hasher.combine(b)
     }

@@ -56,8 +56,8 @@ class DelaunayTriangulationTests: XCTestCase {
             XCTFail("No triangles returned from triangulation.")
             return
         }
-        
-        XCTAssert(expected.symmetricDifference(computed).count == 0, "\nexpected\n\(expected)\nbut got\n\(computed)")
+
+        XCTAssertEqual(expected, computed, "\nexpected\n\(expected.briefDescription())\nbut got\n\(computed.briefDescription())")
     }
     
     func testTriangulator() {
@@ -97,8 +97,7 @@ class DelaunayTriangulationTests: XCTestCase {
             XCTFail("No triangles returned from triangulation.")
             return
         }
-        print(computed.symmetricDifference(expected).briefDescription())
-        XCTAssert(computed.symmetricDifference(expected).count == 0, "expected\n\(expected.briefDescription())\nbut got\n\(computed.briefDescription())")
+        XCTAssertEqual(expected, computed, "expected\n\(expected.briefDescription())\nbut got\n\(computed.briefDescription())")
     }
     
     func testTriangulation() {

@@ -192,10 +192,7 @@ extension Triangle {
 extension Triangle: Hashable {
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(a.a.name)
-        hasher.combine(a.b.name)
-        hasher.combine(b.b.name)
+        hasher.combine(Set<Vertex>([a.a, a.b, b.b]))
     }
 
 }
@@ -215,7 +212,7 @@ extension Triangle: CustomStringConvertible {
 }
 
 public func ==(lhs: Triangle, rhs: Triangle) -> Bool {
-    return Set<Vertex>([lhs.a.a, lhs.a.b, lhs.b.b]).symmetricDifference(Set<Vertex>([rhs.a.a, rhs.a.b, rhs.b.b])).count == 0
+    return Set<Vertex>([lhs.a.a, lhs.a.b, lhs.b.b]) == Set<Vertex>([rhs.a.a, rhs.a.b, rhs.b.b])
 }
 
 extension Set where Element == Triangle {
