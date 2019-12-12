@@ -53,6 +53,14 @@ public class Vertex {
 
 }
 
+public extension Vertex {
+
+    func briefDescription() -> String {
+        return String(format: "V[%.1f, %.1f]", x, y)
+    }
+    
+}
+
 extension Vertex: Hashable {
 
     public func hash(into hasher: inout Hasher) {
@@ -69,7 +77,13 @@ public func ==(lhs: Vertex, rhs: Vertex) -> Bool {
 extension Vertex: CustomStringConvertible {
 
     public var description: String {
-        return String(format: "Vertex “%@”: [%.1f %.1f]", name, x, y)
+        return briefDescription()
     }
 
+}
+
+extension Vertex: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return String(format: "Vertex “%@”: [%.1f %.1f]", name, x, y)
+    }
 }

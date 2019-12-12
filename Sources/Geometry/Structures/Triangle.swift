@@ -150,6 +150,18 @@ public class Triangle {
 
 }
 
+public extension Triangle {
+
+    func briefDescription() -> String {
+        let pointString = points()
+            .sortedLexicographically()
+            .map({$0.briefDescription()})
+            .joined(separator: ", ")
+        return String(format: "T[%@]", pointString)
+    }
+
+}
+
 extension Triangle {
 
     func centroid() -> Vertex {
@@ -200,7 +212,7 @@ extension Triangle: Hashable {
 extension Triangle: CustomStringConvertible {
 
     public var description: String {
-        return String(format: "Triangle “%@”: [%@]", name, Set<Vertex>([a.a, a.b, b.b]).sortedLexicographically().map({ String(describing: $0) }).joined(separator: ", "))
+        return briefDescription()
     }
     
     public func generatingCode(id: Int) -> String {
@@ -209,6 +221,12 @@ extension Triangle: CustomStringConvertible {
         """
     }
 
+}
+
+extension Triangle: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return String(format: "Triangle “%@”: [%@]", name, Set<Vertex>([a.a, a.b, b.b]).sortedLexicographically().map({ String(reflecting: $0) }).joined(separator: ", "))
+    }
 }
 
 public func ==(lhs: Triangle, rhs: Triangle) -> Bool {
@@ -223,9 +241,7 @@ extension Set where Element == Triangle {
     }
     
     func briefDescription() -> String {
-        return map({ triangle in
-            "[" + triangle.points().sortedLexicographically().map { "<\($0.x), \($0.y)>" }.joined(separator: ", ") + "]"
-        }).sorted().joined(separator: "\n")
+        return map({$0.briefDescription()}).sorted().joined(separator: "\n")
     }
     
     func generatingCode() -> String {

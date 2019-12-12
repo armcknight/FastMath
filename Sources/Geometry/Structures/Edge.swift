@@ -39,6 +39,13 @@ public class Edge {
         self.a = x
         self.b = y
     }
+}
+
+public extension Edge {
+    
+    func briefDescription() -> String {
+        return String(format: "E[%@, %@]", a.briefDescription(), b.briefDescription())
+    }
 
     func containsGhostPoint() -> Bool {
         return endpoints().intersection(ghosts).count > 0
@@ -66,9 +73,15 @@ extension Edge: Hashable {
 extension Edge: CustomStringConvertible {
 
     public var description: String {
-        return String(format: "Edge “%@”: [%@ %@]", name, String(describing: a), String(describing: b))
+        return briefDescription()
     }
 
+}
+
+extension Edge: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return String(format: "Edge “%@”: [%@ %@]", name, String(reflecting: a), String(reflecting: b))
+    }
 }
 
 public func ==(lhs: Edge, rhs: Edge) -> Bool {
