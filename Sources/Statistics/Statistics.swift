@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Pippin
+import PippinLibrary
 
 /// return number of combinations possible from combining r objects from a domain of d objects
 func combinations(_ d: Int, _ r: Int) -> Int {
