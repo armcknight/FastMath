@@ -233,15 +233,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FastMath-macOS/FastMath.framework",
-				"${BUILT_PRODUCTS_DIR}/Pippin-macOS/Pippin.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastMath.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pippin.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS/Pods-FastMathTestHarnessPods-FastMathTestHarness-macOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,15 +268,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FastMath-iOS/FastMath.framework",
-				"${BUILT_PRODUCTS_DIR}/Pippin-iOS/Pippin.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FastMath.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pippin.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

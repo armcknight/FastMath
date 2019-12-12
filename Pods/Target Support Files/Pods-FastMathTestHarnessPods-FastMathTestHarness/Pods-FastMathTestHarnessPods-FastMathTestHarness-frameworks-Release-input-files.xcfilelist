@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-FastMathTestHarnessPods-FastMathTestHarness/Pods-FastMathTestHarnessPods-FastMathTestHarness-frameworks.sh
+${BUILT_PRODUCTS_DIR}/FastMath-iOS/FastMath.framework
+${BUILT_PRODUCTS_DIR}/Pippin-iOS/Pippin.framework

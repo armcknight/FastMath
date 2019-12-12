@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5BE6993F85E4CFD0F196CBC2507BBEF"
+               BlueprintIdentifier = "135A23C5238F251C7149888D8C75EEE1"
+               BuildableName = "FastMath-macOS-Unit-Tests.xctest"
                BlueprintName = "FastMath-macOS-Unit-Tests"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FastMath-macOS-Unit-Tests.xctest">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,10 +34,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5BE6993F85E4CFD0F196CBC2507BBEF"
+               BlueprintIdentifier = "135A23C5238F251C7149888D8C75EEE1"
+               BuildableName = "FastMath-macOS-Unit-Tests.xctest"
                BlueprintName = "FastMath-macOS-Unit-Tests"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FastMath-macOS-Unit-Tests.xctest">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
