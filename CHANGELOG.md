@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ---
 
+## [4.0.0] 2020-03-08
+
+### Changed
+
+- Update iOS `deployment_target` version to 12.0.
+
+### Fixed
+
+- Update `PippinLibrary` dependency version.
+
+## [3.0.1] 2020-03-08
+
+### Fixed
+
+- Update `PippinLibrary` dependency.
+
 ## [3.0.0] 2019-12-12
 
 ### Changed
